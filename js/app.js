@@ -22,13 +22,24 @@ const App = (() => {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('me-theme', 'dark');
     }
-    const btn = document.querySelector('.theme-toggle');
-    if (btn) btn.textContent = isDark ? 'Modo Oscuridad' : 'Modo Claro';
+    // Update all toggle icons
+    document.querySelectorAll('.theme-toggle').forEach(btn => {
+      btn.innerHTML = isDark ? themeIcon('light') : themeIcon('dark');
+    });
   }
 
-  function themeButtonText() {
+  function themeIcon(mode) {
+    if (mode === 'dark') {
+      // Moon icon - currently light, click to go dark
+      return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    }
+    // Sun icon - currently dark, click to go light
+    return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
+  }
+
+  function currentThemeIcon() {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    return isDark ? 'Modo Claro' : 'Modo Oscuridad';
+    return isDark ? themeIcon('dark') : themeIcon('light');
   }
 
   // --- Routing ---
@@ -46,11 +57,19 @@ const App = (() => {
     window.location.hash = hash;
   }
 
+  // Date patterns to detect at end of poem lines
+  const datePattern = /^(?:enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)\s+\d{4}$/i;
+
   // --- Format poem text to HTML ---
   function formatPoem(text) {
     const stanzas = text.split('\n\n');
     return stanzas.map(s => {
-      const lines = s.split('\n').map(l => `<span class="line">${l}</span>`).join('');
+      const lines = s.split('\n').map(l => {
+        if (datePattern.test(l.trim())) {
+          return `<span class="line poem-date">${l}</span>`;
+        }
+        return `<span class="line">${l}</span>`;
+      }).join('');
       return `<div class="stanza">${lines}</div>`;
     }).join('');
   }
@@ -90,7 +109,7 @@ const App = (() => {
       <div class="catalog-page">
         <header class="site-header">
           <a href="#/" class="site-brand">Maestra Editorial</a>
-          <button class="theme-toggle" onclick="App.toggleTheme()">${themeButtonText()}</button>
+          <button class="theme-toggle" onclick="App.toggleTheme()">${currentThemeIcon()}</button>
         </header>
         <div class="catalog-hero">
           <div class="catalog-hero-brand">Cat\u00e1logo de poes\u00eda</div>
@@ -145,6 +164,7 @@ const App = (() => {
       <div class="book-reader">
         <button class="sidebar-toggle" id="sidebar-toggle">\u2630</button>
 
+        <div class="sidebar-hover-zone"></div>
         <nav class="book-sidebar" id="book-sidebar">
           <ul class="sidebar-index" id="sidebar-index">
             ${indexHTML}
@@ -153,11 +173,12 @@ const App = (() => {
 
         <div class="book-right-info">
           <span class="book-right-title">${book.title}</span>
+          <div class="book-right-sep"></div>
           <span class="book-right-author">${book.author}</span>
         </div>
 
         <div class="reader-theme-toggle">
-          <button class="theme-toggle" onclick="App.toggleTheme()">${themeButtonText()}</button>
+          <button class="theme-toggle" onclick="App.toggleTheme()">${currentThemeIcon()}</button>
         </div>
 
         <div class="book-hero">

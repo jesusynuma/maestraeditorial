@@ -117,21 +117,23 @@ body {
 }
 
 .theme-toggle {
-  font-family: 'Lustria', Georgia, serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
   background: none;
-  border: 1px solid var(--toggle-border);
+  border: none;
   color: var(--text-muted);
-  padding: 0.5rem 1.2rem;
+  padding: 0.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .theme-toggle:hover {
   color: var(--text-color);
-  border-color: var(--text-color);
+}
+
+.theme-toggle svg {
+  display: block;
 }
 
 /* --- Catalog Page --- */
@@ -313,18 +315,38 @@ body {
   animation: fadeIn 1.5s ease infinite alternate;
 }
 
-/* --- Sidebar (left, poem index only) --- */
+/* --- Sidebar (left, hover-reveal on desktop) --- */
+/* Invisible hover trigger zone on the left edge */
 .book-sidebar {
-  width: 220px;
+  width: 240px;
   position: fixed;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(-200px);
   left: 0;
   z-index: 20;
   padding: 1rem 0;
   max-height: 80vh;
   overflow-y: auto;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  pointer-events: none;
+}
+
+/* Hover zone: invisible strip on left edge to trigger sidebar */
+.sidebar-hover-zone {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 100%;
+  z-index: 19;
+}
+
+.sidebar-hover-zone:hover ~ .book-sidebar,
+.book-sidebar:hover {
+  transform: translateY(-50%) translateX(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .sidebar-index {
@@ -371,18 +393,24 @@ body {
 }
 
 .book-right-title {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--text-light);
+  color: var(--text-muted);
+}
+
+.book-right-sep {
+  width: 1px;
+  height: 30px;
+  background: var(--border-color);
 }
 
 .book-right-author {
-  font-size: 0.55rem;
+  font-size: 0.6rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-light);
-  opacity: 0.6;
+  color: var(--text-muted);
+  opacity: 0.7;
 }
 
 /* --- Book Content --- */
@@ -456,6 +484,15 @@ body {
 
 .poem-body .line {
   display: block;
+}
+
+.poem-body .poem-date {
+  display: block;
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
 }
 
 /* Poem actions */
@@ -699,13 +736,8 @@ body {
     gap: 2rem;
   }
 
-  .book-sidebar {
-    width: 180px;
-  }
-
-  .sidebar-index a {
-    padding: 0.4rem 1.2rem;
-    font-size: 0.58rem;
+  .sidebar-hover-zone {
+    width: 20px;
   }
 }
 
@@ -734,9 +766,19 @@ body {
     width: 220px;
   }
 
-  /* Sidebar mobile: hidden by default, overlay when open */
+  /* Sidebar mobile: hidden by default, toggle to open */
   .sidebar-toggle {
     display: flex;
+  }
+
+  .sidebar-hover-zone {
+    display: none;
+  }
+
+  .sidebar-hover-zone:hover ~ .book-sidebar {
+    transform: none;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .book-sidebar {
@@ -744,7 +786,7 @@ body {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 260px;
+    width: 280px;
     height: 100vh;
     max-height: 100vh;
     transform: translateX(-100%);
@@ -753,11 +795,13 @@ body {
     padding: 4rem 0 2rem;
     z-index: 25;
     overflow-y: auto;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .book-sidebar.open {
     transform: translateX(0);
-    box-shadow: 4px 0 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 0 30px rgba(0, 0, 0, 0.15);
   }
 
   /* Hide right side info on mobile */
