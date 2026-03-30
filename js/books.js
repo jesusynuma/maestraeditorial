@@ -1,39 +1,127 @@
+const bookSVGs = {
+  animales: `<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" class="book-cover-svg">
+    <rect width="200" height="260" fill="none"/>
+    <!-- Bird body -->
+    <ellipse cx="100" cy="120" rx="28" ry="24" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <!-- Head -->
+    <circle cx="100" cy="88" r="14" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <!-- Eye -->
+    <circle cx="104" cy="85" r="2.5" fill="currentColor"/>
+    <!-- Beak -->
+    <path d="M114 88 L126 84 L114 92" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <!-- Tail feathers -->
+    <path d="M72 130 Q55 145 48 160" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <path d="M72 128 Q52 138 42 152" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <path d="M74 126 Q50 132 38 142" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <!-- Legs -->
+    <line x1="92" y1="144" x2="88" y2="170" stroke="currentColor" stroke-width="1.2"/>
+    <line x1="108" y1="144" x2="112" y2="170" stroke="currentColor" stroke-width="1.2"/>
+    <path d="M78 170 L88 170 L95 176" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <path d="M105 176 L112 170 L122 170" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <!-- Decorative dots -->
+    <circle cx="140" cy="70" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
+    <circle cx="155" cy="100" r="3" fill="none" stroke="currentColor" stroke-width="0.8"/>
+    <circle cx="60" cy="75" r="2.5" fill="none" stroke="currentColor" stroke-width="0.8"/>
+    <circle cx="148" cy="130" r="1.5" fill="none" stroke="currentColor" stroke-width="0.8"/>
+    <circle cx="50" cy="105" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
+    <circle cx="145" cy="155" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
+    <!-- Whisker lines from beak -->
+    <line x1="126" y1="84" x2="145" y2="78" stroke="currentColor" stroke-width="0.8"/>
+    <line x1="126" y1="86" x2="148" y2="86" stroke="currentColor" stroke-width="0.8"/>
+    <line x1="126" y1="88" x2="145" y2="94" stroke="currentColor" stroke-width="0.8"/>
+  </svg>`,
+
+  "ciudad-invisible": `<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" class="book-cover-svg">
+    <rect width="200" height="260" fill="none"/>
+    <!-- Buildings -->
+    <rect x="20" y="90" width="24" height="120" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <rect x="50" y="60" width="20" height="150" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <rect x="76" y="100" width="30" height="110" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <rect x="112" y="50" width="18" height="160" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <rect x="136" y="80" width="26" height="130" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <rect x="168" y="110" width="16" height="100" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <!-- Windows -->
+    <rect x="26" y="100" width="5" height="6" fill="currentColor" opacity="0.3"/>
+    <rect x="34" y="100" width="5" height="6" fill="currentColor" opacity="0.3"/>
+    <rect x="26" y="115" width="5" height="6" fill="currentColor" opacity="0.3"/>
+    <rect x="34" y="115" width="5" height="6" fill="currentColor" opacity="0.3"/>
+    <rect x="26" y="130" width="5" height="6" fill="currentColor" opacity="0.3"/>
+    <rect x="34" y="130" width="5" height="6" fill="currentColor" opacity="0.3"/>
+    <rect x="55" y="70" width="4" height="5" fill="currentColor" opacity="0.3"/>
+    <rect x="62" y="70" width="4" height="5" fill="currentColor" opacity="0.3"/>
+    <rect x="55" y="85" width="4" height="5" fill="currentColor" opacity="0.3"/>
+    <rect x="62" y="85" width="4" height="5" fill="currentColor" opacity="0.3"/>
+    <rect x="55" y="100" width="4" height="5" fill="currentColor" opacity="0.3"/>
+    <rect x="62" y="100" width="4" height="5" fill="currentColor" opacity="0.3"/>
+    <rect x="82" y="110" width="6" height="7" fill="currentColor" opacity="0.3"/>
+    <rect x="94" y="110" width="6" height="7" fill="currentColor" opacity="0.3"/>
+    <rect x="82" y="125" width="6" height="7" fill="currentColor" opacity="0.3"/>
+    <rect x="94" y="125" width="6" height="7" fill="currentColor" opacity="0.3"/>
+    <rect x="116" y="60" width="4" height="5" fill="currentColor" opacity="0.3"/>
+    <rect x="122" y="60" width="4" height="5" fill="currentColor" opacity="0.3"/>
+    <rect x="116" y="75" width="4" height="5" fill="currentColor" opacity="0.3"/>
+    <rect x="122" y="75" width="4" height="5" fill="currentColor" opacity="0.3"/>
+    <rect x="116" y="90" width="4" height="5" fill="currentColor" opacity="0.3"/>
+    <rect x="122" y="90" width="4" height="5" fill="currentColor" opacity="0.3"/>
+    <rect x="141" y="92" width="5" height="6" fill="currentColor" opacity="0.3"/>
+    <rect x="152" y="92" width="5" height="6" fill="currentColor" opacity="0.3"/>
+    <rect x="141" y="108" width="5" height="6" fill="currentColor" opacity="0.3"/>
+    <rect x="152" y="108" width="5" height="6" fill="currentColor" opacity="0.3"/>
+    <rect x="172" y="120" width="4" height="5" fill="currentColor" opacity="0.3"/>
+    <rect x="172" y="135" width="4" height="5" fill="currentColor" opacity="0.3"/>
+    <!-- Ground line -->
+    <line x1="10" y1="210" x2="190" y2="210" stroke="currentColor" stroke-width="1"/>
+    <!-- Antenna -->
+    <line x1="121" y1="50" x2="121" y2="32" stroke="currentColor" stroke-width="1"/>
+    <circle cx="121" cy="30" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
+    <!-- Moon -->
+    <circle cx="170" cy="35" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+    <circle cx="174" cy="32" r="8" fill="var(--bg-color, #fdfcf8)" stroke="none"/>
+  </svg>`,
+
+  "reloj-de-arena": `<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" class="book-cover-svg">
+    <rect width="200" height="260" fill="none"/>
+    <!-- Top plate -->
+    <line x1="60" y1="50" x2="140" y2="50" stroke="currentColor" stroke-width="2"/>
+    <!-- Bottom plate -->
+    <line x1="60" y1="210" x2="140" y2="210" stroke="currentColor" stroke-width="2"/>
+    <!-- Left glass -->
+    <path d="M70 50 Q70 90 72 110 Q74 125 100 130 Q74 135 72 150 Q70 170 70 210" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <!-- Right glass -->
+    <path d="M130 50 Q130 90 128 110 Q126 125 100 130 Q126 135 128 150 Q130 170 130 210" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <!-- Sand in top (partial) -->
+    <path d="M82 80 Q82 95 86 108 Q90 118 100 122 Q110 118 114 108 Q118 95 118 80" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 3"/>
+    <!-- Sand stream -->
+    <line x1="100" y1="130" x2="100" y2="170" stroke="currentColor" stroke-width="0.8" stroke-dasharray="1 4"/>
+    <!-- Sand pile at bottom -->
+    <path d="M80 200 Q90 185 100 180 Q110 185 120 200" fill="none" stroke="currentColor" stroke-width="1"/>
+    <!-- Sand dots falling -->
+    <circle cx="100" cy="140" r="1" fill="currentColor"/>
+    <circle cx="100" cy="150" r="1" fill="currentColor"/>
+    <circle cx="100" cy="160" r="1" fill="currentColor"/>
+    <circle cx="99" cy="172" r="1" fill="currentColor"/>
+    <!-- Sand dots in pile -->
+    <circle cx="95" cy="196" r="1" fill="currentColor"/>
+    <circle cx="100" cy="194" r="1" fill="currentColor"/>
+    <circle cx="105" cy="196" r="1" fill="currentColor"/>
+    <circle cx="100" cy="198" r="1" fill="currentColor"/>
+    <circle cx="92" cy="200" r="1" fill="currentColor"/>
+    <circle cx="108" cy="200" r="1" fill="currentColor"/>
+    <circle cx="97" cy="190" r="1" fill="currentColor"/>
+    <circle cx="103" cy="190" r="1" fill="currentColor"/>
+    <!-- Decorative end caps -->
+    <line x1="64" y1="48" x2="64" y2="52" stroke="currentColor" stroke-width="1.5"/>
+    <line x1="136" y1="48" x2="136" y2="52" stroke="currentColor" stroke-width="1.5"/>
+    <line x1="64" y1="208" x2="64" y2="212" stroke="currentColor" stroke-width="1.5"/>
+    <line x1="136" y1="208" x2="136" y2="212" stroke="currentColor" stroke-width="1.5"/>
+  </svg>`
+};
+
 const books = [
   {
     id: "animales",
     title: "Animales",
     author: "Kelly Garcia",
-    coverSVG: `<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" class="book-cover-svg">
-      <rect width="200" height="260" fill="none"/>
-      <!-- Bird body -->
-      <ellipse cx="100" cy="120" rx="28" ry="24" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <!-- Head -->
-      <circle cx="100" cy="88" r="14" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <!-- Eye -->
-      <circle cx="104" cy="85" r="2.5" fill="currentColor"/>
-      <!-- Beak -->
-      <path d="M114 88 L126 84 L114 92" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <!-- Tail feathers -->
-      <path d="M72 130 Q55 145 48 160" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <path d="M72 128 Q52 138 42 152" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <path d="M74 126 Q50 132 38 142" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <!-- Legs -->
-      <line x1="92" y1="144" x2="88" y2="170" stroke="currentColor" stroke-width="1.2"/>
-      <line x1="108" y1="144" x2="112" y2="170" stroke="currentColor" stroke-width="1.2"/>
-      <path d="M78 170 L88 170 L95 176" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <path d="M105 176 L112 170 L122 170" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <!-- Decorative dots -->
-      <circle cx="140" cy="70" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
-      <circle cx="155" cy="100" r="3" fill="none" stroke="currentColor" stroke-width="0.8"/>
-      <circle cx="60" cy="75" r="2.5" fill="none" stroke="currentColor" stroke-width="0.8"/>
-      <circle cx="148" cy="130" r="1.5" fill="none" stroke="currentColor" stroke-width="0.8"/>
-      <circle cx="50" cy="105" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
-      <circle cx="145" cy="155" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
-      <!-- Whisker lines from beak -->
-      <line x1="126" y1="84" x2="145" y2="78" stroke="currentColor" stroke-width="0.8"/>
-      <line x1="126" y1="86" x2="148" y2="86" stroke="currentColor" stroke-width="0.8"/>
-      <line x1="126" y1="88" x2="145" y2="94" stroke="currentColor" stroke-width="0.8"/>
-    </svg>`,
     poems: [
       {
         title: "Ayer vi a Blanca Varela...",
@@ -97,53 +185,6 @@ const books = [
     id: "ciudad-invisible",
     title: "Ciudad Invisible",
     author: "Marcos Rueda",
-    coverSVG: `<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" class="book-cover-svg">
-      <rect width="200" height="260" fill="none"/>
-      <!-- Buildings -->
-      <rect x="20" y="90" width="24" height="120" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <rect x="50" y="60" width="20" height="150" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <rect x="76" y="100" width="30" height="110" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <rect x="112" y="50" width="18" height="160" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <rect x="136" y="80" width="26" height="130" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <rect x="168" y="110" width="16" height="100" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <!-- Windows -->
-      <rect x="26" y="100" width="5" height="6" fill="currentColor" opacity="0.3"/>
-      <rect x="34" y="100" width="5" height="6" fill="currentColor" opacity="0.3"/>
-      <rect x="26" y="115" width="5" height="6" fill="currentColor" opacity="0.3"/>
-      <rect x="34" y="115" width="5" height="6" fill="currentColor" opacity="0.3"/>
-      <rect x="26" y="130" width="5" height="6" fill="currentColor" opacity="0.3"/>
-      <rect x="34" y="130" width="5" height="6" fill="currentColor" opacity="0.3"/>
-      <rect x="55" y="70" width="4" height="5" fill="currentColor" opacity="0.3"/>
-      <rect x="62" y="70" width="4" height="5" fill="currentColor" opacity="0.3"/>
-      <rect x="55" y="85" width="4" height="5" fill="currentColor" opacity="0.3"/>
-      <rect x="62" y="85" width="4" height="5" fill="currentColor" opacity="0.3"/>
-      <rect x="55" y="100" width="4" height="5" fill="currentColor" opacity="0.3"/>
-      <rect x="62" y="100" width="4" height="5" fill="currentColor" opacity="0.3"/>
-      <rect x="82" y="110" width="6" height="7" fill="currentColor" opacity="0.3"/>
-      <rect x="94" y="110" width="6" height="7" fill="currentColor" opacity="0.3"/>
-      <rect x="82" y="125" width="6" height="7" fill="currentColor" opacity="0.3"/>
-      <rect x="94" y="125" width="6" height="7" fill="currentColor" opacity="0.3"/>
-      <rect x="116" y="60" width="4" height="5" fill="currentColor" opacity="0.3"/>
-      <rect x="122" y="60" width="4" height="5" fill="currentColor" opacity="0.3"/>
-      <rect x="116" y="75" width="4" height="5" fill="currentColor" opacity="0.3"/>
-      <rect x="122" y="75" width="4" height="5" fill="currentColor" opacity="0.3"/>
-      <rect x="116" y="90" width="4" height="5" fill="currentColor" opacity="0.3"/>
-      <rect x="122" y="90" width="4" height="5" fill="currentColor" opacity="0.3"/>
-      <rect x="141" y="92" width="5" height="6" fill="currentColor" opacity="0.3"/>
-      <rect x="152" y="92" width="5" height="6" fill="currentColor" opacity="0.3"/>
-      <rect x="141" y="108" width="5" height="6" fill="currentColor" opacity="0.3"/>
-      <rect x="152" y="108" width="5" height="6" fill="currentColor" opacity="0.3"/>
-      <rect x="172" y="120" width="4" height="5" fill="currentColor" opacity="0.3"/>
-      <rect x="172" y="135" width="4" height="5" fill="currentColor" opacity="0.3"/>
-      <!-- Ground line -->
-      <line x1="10" y1="210" x2="190" y2="210" stroke="currentColor" stroke-width="1"/>
-      <!-- Antenna -->
-      <line x1="121" y1="50" x2="121" y2="32" stroke="currentColor" stroke-width="1"/>
-      <circle cx="121" cy="30" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
-      <!-- Moon -->
-      <circle cx="170" cy="35" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
-      <circle cx="174" cy="32" r="8" fill="var(--bg-color, #fdfcf8)" stroke="none"/>
-    </svg>`,
     poems: [
       {
         title: "Calle sin nombre",
@@ -175,42 +216,6 @@ const books = [
     id: "reloj-de-arena",
     title: "Reloj de Arena",
     author: "Valentina Sol",
-    coverSVG: `<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" class="book-cover-svg">
-      <rect width="200" height="260" fill="none"/>
-      <!-- Top plate -->
-      <line x1="60" y1="50" x2="140" y2="50" stroke="currentColor" stroke-width="2"/>
-      <!-- Bottom plate -->
-      <line x1="60" y1="210" x2="140" y2="210" stroke="currentColor" stroke-width="2"/>
-      <!-- Left glass -->
-      <path d="M70 50 Q70 90 72 110 Q74 125 100 130 Q74 135 72 150 Q70 170 70 210" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <!-- Right glass -->
-      <path d="M130 50 Q130 90 128 110 Q126 125 100 130 Q126 135 128 150 Q130 170 130 210" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <!-- Sand in top (partial) -->
-      <path d="M82 80 Q82 95 86 108 Q90 118 100 122 Q110 118 114 108 Q118 95 118 80" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 3"/>
-      <!-- Sand stream -->
-      <line x1="100" y1="130" x2="100" y2="170" stroke="currentColor" stroke-width="0.8" stroke-dasharray="1 4"/>
-      <!-- Sand pile at bottom -->
-      <path d="M80 200 Q90 185 100 180 Q110 185 120 200" fill="none" stroke="currentColor" stroke-width="1"/>
-      <!-- Sand dots falling -->
-      <circle cx="100" cy="140" r="1" fill="currentColor"/>
-      <circle cx="100" cy="150" r="1" fill="currentColor"/>
-      <circle cx="100" cy="160" r="1" fill="currentColor"/>
-      <circle cx="99" cy="172" r="1" fill="currentColor"/>
-      <!-- Sand dots in pile -->
-      <circle cx="95" cy="196" r="1" fill="currentColor"/>
-      <circle cx="100" cy="194" r="1" fill="currentColor"/>
-      <circle cx="105" cy="196" r="1" fill="currentColor"/>
-      <circle cx="100" cy="198" r="1" fill="currentColor"/>
-      <circle cx="92" cy="200" r="1" fill="currentColor"/>
-      <circle cx="108" cy="200" r="1" fill="currentColor"/>
-      <circle cx="97" cy="190" r="1" fill="currentColor"/>
-      <circle cx="103" cy="190" r="1" fill="currentColor"/>
-      <!-- Decorative end caps -->
-      <line x1="64" y1="48" x2="64" y2="52" stroke="currentColor" stroke-width="1.5"/>
-      <line x1="136" y1="48" x2="136" y2="52" stroke="currentColor" stroke-width="1.5"/>
-      <line x1="64" y1="208" x2="64" y2="212" stroke="currentColor" stroke-width="1.5"/>
-      <line x1="136" y1="208" x2="136" y2="212" stroke="currentColor" stroke-width="1.5"/>
-    </svg>`,
     poems: [
       {
         title: "Primer grano",

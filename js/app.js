@@ -22,7 +22,6 @@ const App = (() => {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('me-theme', 'dark');
     }
-    // Update toggle button text
     const btn = document.querySelector('.theme-toggle');
     if (btn) btn.textContent = isDark ? 'Modo Oscuridad' : 'Modo Claro';
   }
@@ -56,6 +55,11 @@ const App = (() => {
     }).join('');
   }
 
+  // --- Get SVG for a book ---
+  function getBookSVG(book) {
+    return bookSVGs[book.id] || '';
+  }
+
   // --- Render Catalog ---
   function renderCatalog() {
     Capture.setCurrentBook(null);
@@ -63,7 +67,7 @@ const App = (() => {
     const cardsHTML = books.map(book => `
       <a class="book-card" href="#/book/${book.id}">
         <div class="book-card-cover">
-          ${book.coverSVG}
+          ${getBookSVG(book)}
         </div>
         <div class="book-card-info">
           <div class="book-card-author">${book.author}</div>
@@ -108,7 +112,10 @@ const App = (() => {
         <div class="poem-title">${poem.title}</div>
         <div class="poem-body">${formatPoem(poem.content)}</div>
         <div class="poem-actions">
-          <button class="poem-action-btn" onclick="App.savePoem(${i})">Guardar</button>
+          <button class="poem-action-btn" onclick="App.savePoem(${i})" title="Guardar como imagen">Guardar</button>
+          <button class="poem-action-btn poem-copy-btn" onclick="App.copyPoem(${i})" title="Copiar poema">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copiar
+          </button>
         </div>
       </section>
     `).join('');
@@ -132,7 +139,7 @@ const App = (() => {
             <button class="theme-toggle" onclick="App.toggleTheme()">${themeButtonText()}</button>
           </header>
           <div class="book-hero">
-            <div class="book-hero-svg">${book.coverSVG}</div>
+            <div class="book-hero-svg">${getBookSVG(book)}</div>
             <div class="book-hero-author">${book.author}</div>
             <h1 class="book-hero-title">${book.title}</h1>
             <div class="book-hero-brand">Maestra Editorial</div>
@@ -194,7 +201,6 @@ const App = (() => {
           const active = document.querySelector(`.sidebar-poem-link[data-index="${idx}"]`);
           if (active) {
             active.classList.add('active');
-            // Scroll sidebar to show active link
             active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
           }
         }
@@ -214,6 +220,28 @@ const App = (() => {
 
   function savePoem(index) {
     Capture.capturePoem(index);
+  }
+
+  function copyPoem(index) {
+    const route = getRoute();
+    const book = books.find(b => b.id === route.bookId);
+    if (!book || !book.poems[index]) return;
+    const poem = book.poems[index];
+    const fullText = poem.title + '\n\n' + poem.content + '\n\n\u2014 ' + book.author + ', ' + book.title;
+    navigator.clipboard.writeText(fullText).then(() => {
+      Capture.showToast('Poema copiado');
+    }).catch(() => {
+      // Fallback for older browsers
+      const ta = document.createElement('textarea');
+      ta.value = fullText;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      Capture.showToast('Poema copiado');
+    });
   }
 
   // --- Router ---
@@ -239,6 +267,7 @@ const App = (() => {
     toggleTheme,
     goHome,
     savePoem,
+    copyPoem,
     navigate
   };
 })();
