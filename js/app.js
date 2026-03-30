@@ -60,6 +60,15 @@ const App = (() => {
     return bookSVGs[book.id] || '';
   }
 
+  // --- Get poem illustration ---
+  function getPoemIllustration(bookId, index) {
+    const illustrations = poemIllustrations[bookId];
+    if (illustrations && illustrations[index]) {
+      return `<div class="poem-illustration">${illustrations[index]}</div>`;
+    }
+    return '';
+  }
+
   // --- Render Catalog ---
   function renderCatalog() {
     Capture.setCurrentBook(null);
@@ -109,6 +118,7 @@ const App = (() => {
 
     const poemsHTML = book.poems.map((poem, i) => `
       <section class="poem-section" id="poem-${i}" data-poem-index="${i}">
+        ${getPoemIllustration(book.id, i)}
         <div class="poem-title">${poem.title}</div>
         ${poem.subtitle ? `<div class="poem-subtitle">${poem.subtitle}</div>` : ''}
         <div class="poem-body">${formatPoem(poem.content)}</div>
@@ -121,37 +131,58 @@ const App = (() => {
       </section>
     `).join('');
 
+    // Other books for the end section
+    const otherBooks = books.filter(b => b.id !== book.id);
+    const otherBooksHTML = otherBooks.map(b => `
+      <a class="book-end-card" href="#/book/${b.id}">
+        <div class="book-end-card-svg">${getBookSVG(b)}</div>
+        <div class="book-end-card-author">${b.author}</div>
+        <div class="book-end-card-title">${b.title}</div>
+      </a>
+    `).join('');
+
     app.innerHTML = `
       <div class="book-reader">
         <button class="sidebar-toggle" id="sidebar-toggle">\u2630</button>
+
         <nav class="book-sidebar" id="book-sidebar">
-          <div class="sidebar-header">
-            <button class="sidebar-back" onclick="App.goHome()">Cat\u00e1logo</button>
-            <div class="sidebar-book-title">${book.title}</div>
-            <div class="sidebar-book-author">${book.author}</div>
-          </div>
           <ul class="sidebar-index" id="sidebar-index">
             ${indexHTML}
           </ul>
         </nav>
+
+        <div class="book-right-info">
+          <span class="book-right-title">${book.title}</span>
+          <span class="book-right-author">${book.author}</span>
+        </div>
+
+        <div class="reader-theme-toggle">
+          <button class="theme-toggle" onclick="App.toggleTheme()">${themeButtonText()}</button>
+        </div>
+
+        <div class="book-hero">
+          <div class="book-hero-svg">${getBookSVG(book)}</div>
+          <div class="book-hero-author">${book.author}</div>
+          <h1 class="book-hero-title">${book.title}</h1>
+          ${book.dedication ? `<div class="book-hero-dedication">${book.dedication}</div>` : ''}
+          <div class="book-hero-brand">Maestra Editorial</div>
+          <div class="book-hero-scroll">\u2193</div>
+        </div>
+
         <main class="book-content">
-          <header class="site-header" style="position:sticky;top:0;background:var(--bg-color);z-index:10;">
-            <span></span>
-            <button class="theme-toggle" onclick="App.toggleTheme()">${themeButtonText()}</button>
-          </header>
-          <div class="book-hero">
-            <div class="book-hero-svg">${getBookSVG(book)}</div>
-            <div class="book-hero-author">${book.author}</div>
-            <h1 class="book-hero-title">${book.title}</h1>
-            ${book.dedication ? `<div class="book-hero-dedication">${book.dedication}</div>` : ''}
-            <div class="book-hero-brand">Maestra Editorial</div>
-          </div>
           ${poemsHTML}
+
+          <div class="book-end-section">
+            <div class="book-end-title">Lee otros libros</div>
+            <div class="book-end-grid">
+              ${otherBooksHTML}
+            </div>
+          </div>
         </main>
       </div>
     `;
 
-    // Setup sidebar toggle for mobile
+    // Sidebar toggle for mobile
     const toggle = document.getElementById('sidebar-toggle');
     const sidebar = document.getElementById('book-sidebar');
     if (toggle) {
@@ -160,7 +191,7 @@ const App = (() => {
       });
     }
 
-    // Sidebar link clicks (smooth scroll + close on mobile)
+    // Sidebar link clicks
     const sidebarLinks = document.querySelectorAll('.sidebar-poem-link');
     sidebarLinks.forEach(link => {
       link.addEventListener('click', (e) => {
@@ -174,10 +205,15 @@ const App = (() => {
       });
     });
 
-    // Setup intersection observer for active poem tracking
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+      if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && e.target !== toggle) {
+        sidebar.classList.remove('open');
+      }
+    });
+
     setupPoemObserver();
 
-    // Scroll to specific poem if requested
     if (scrollToPoemIndex !== null && scrollToPoemIndex !== undefined) {
       setTimeout(() => {
         const target = document.getElementById(`poem-${scrollToPoemIndex}`);
@@ -188,7 +224,7 @@ const App = (() => {
     }
   }
 
-  // --- Poem Observer (highlight active in sidebar) ---
+  // --- Poem Observer ---
   function setupPoemObserver() {
     const sections = document.querySelectorAll('.poem-section');
     const links = document.querySelectorAll('.sidebar-poem-link');
@@ -233,7 +269,6 @@ const App = (() => {
     navigator.clipboard.writeText(fullText).then(() => {
       Capture.showToast('Poema copiado');
     }).catch(() => {
-      // Fallback for older browsers
       const ta = document.createElement('textarea');
       ta.value = fullText;
       ta.style.position = 'fixed';

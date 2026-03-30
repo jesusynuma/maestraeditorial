@@ -126,6 +126,55 @@ const bookSVGs = {
   </svg>`
 };
 
+// Small SVG illustrations for each poem (by book id, indexed by poem position)
+const poemIllustrations = {
+  animales: [
+    // 0: Blanca Varela - bus/metropolitano
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="8" y="18" width="44" height="26" rx="4"/><circle cx="18" cy="46" r="4"/><circle cx="42" cy="46" r="4"/><rect x="12" y="22" width="10" height="10" rx="1"/><rect x="25" y="22" width="10" height="10" rx="1"/><rect x="38" y="22" width="10" height="10" rx="1"/><line x1="8" y1="44" x2="52" y2="44"/></svg>`,
+    // 1: Perro atropellado - dog lying
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><ellipse cx="30" cy="32" rx="18" ry="8"/><circle cx="48" cy="25" r="7"/><circle cx="51" cy="23" r="1.5" fill="currentColor"/><path d="M54 27 Q58 28 55 25"/><path d="M16 38 Q14 46 17 48"/><path d="M22 39 Q20 46 23 48"/><line x1="5" y1="48" x2="55" y2="48" stroke-dasharray="4 3" stroke-width="0.8"/></svg>`,
+    // 2: 6:00 p.m. - setting sun
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="5" y1="38" x2="55" y2="38"/><path d="M15 38 A15 15 0 0 1 45 38"/><line x1="30" y1="14" x2="30" y2="20"/><line x1="14" y1="22" x2="18" y2="26"/><line x1="46" y1="22" x2="42" y2="26"/><line x1="8" y1="32" x2="14" y2="32"/><line x1="46" y1="32" x2="52" y2="32"/><circle cx="30" cy="30" r="2" fill="currentColor" opacity="0.3"/></svg>`,
+    // 3: Ausencia - empty doorway
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="15" y="8" width="30" height="46"/><path d="M20 54 L20 18 Q30 10 40 18 L40 54"/><circle cx="37" cy="36" r="1.5" fill="currentColor"/></svg>`,
+    // 4: Tributo a tu tiempo - dead bird
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><ellipse cx="30" cy="38" rx="14" ry="8"/><circle cx="18" cy="32" r="6"/><circle cx="16" cy="31" r="1.2" fill="currentColor"/><path d="M12 33 L6 31"/><path d="M30 46 Q28 52 32 52"/><line x1="30" y1="30" x2="28" y2="24" stroke-width="0.8"/><line x1="32" y1="30" x2="34" y2="24" stroke-width="0.8"/><path d="M26 24 Q30 20 34 24" stroke-width="0.8"/></svg>`,
+    // 5: Si pues, ya no me gustan tus ojos - lightbulb
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 35 Q18 28 18 22 A12 12 0 0 1 42 22 Q42 28 38 35"/><line x1="22" y1="35" x2="38" y2="35"/><line x1="24" y1="39" x2="36" y2="39"/><line x1="26" y1="43" x2="34" y2="43"/><line x1="30" y1="22" x2="30" y2="10" stroke-width="0.8"/><line x1="40" y1="14" x2="46" y2="10" stroke-width="0.8"/><line x1="20" y1="14" x2="14" y2="10" stroke-width="0.8"/></svg>`,
+    // 6: Oda - cat face
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="30" cy="34" r="16"/><path d="M14 22 L20 8 L26 20"/><path d="M46 22 L40 8 L34 20"/><circle cx="24" cy="32" r="2" fill="currentColor"/><circle cx="36" cy="32" r="2" fill="currentColor"/><ellipse cx="30" cy="38" rx="3" ry="2"/><line x1="14" y1="34" x2="6" y2="32" stroke-width="0.8"/><line x1="14" y1="36" x2="6" y2="38" stroke-width="0.8"/><line x1="46" y1="34" x2="54" y2="32" stroke-width="0.8"/><line x1="46" y1="36" x2="54" y2="38" stroke-width="0.8"/></svg>`,
+    // 7: Sin título - spider web
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.8"><line x1="30" y1="5" x2="30" y2="55"/><line x1="5" y1="30" x2="55" y2="30"/><line x1="10" y1="10" x2="50" y2="50"/><line x1="50" y1="10" x2="10" y2="50"/><path d="M30 12 Q36 12 38 18 Q38 24 30 24 Q22 24 22 18 Q22 12 30 12"/><path d="M30 18 Q42 18 44 30 Q44 42 30 42 Q18 42 18 30 Q18 18 30 18"/><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>`,
+    // 8: G - cricket
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><ellipse cx="30" cy="34" rx="12" ry="7"/><circle cx="18" cy="30" r="5"/><circle cx="16" cy="29" r="1.2" fill="currentColor"/><path d="M16 26 Q12 18 8 14" stroke-width="0.8"/><path d="M18 26 Q16 18 14 14" stroke-width="0.8"/><path d="M36 40 L44 52"/><path d="M38 40 L48 48"/><path d="M24 40 L18 52"/><path d="M22 40 L14 48"/></svg>`,
+    // 9: Si no te viera más - paint drop
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M30 8 Q38 24 38 34 A8 8 0 0 1 22 34 Q22 24 30 8"/><circle cx="30" cy="34" r="2" fill="currentColor" opacity="0.3"/><rect x="10" y="48" width="40" height="6" rx="1" stroke-width="0.8"/></svg>`,
+    // 10: Mamá sé que lloras - closed eyes with tear
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M10 28 Q18 22 26 28"/><path d="M34 28 Q42 22 50 28"/><path d="M26 32 Q24 38 26 42" stroke-width="0.8"/><circle cx="26" cy="44" r="2" fill="currentColor" opacity="0.4"/></svg>`,
+    // 11: Vivo en el surco - fingerprint
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.8"><path d="M22 42 Q16 34 16 26 Q16 14 30 12 Q44 10 44 26"/><path d="M26 40 Q20 34 20 26 Q20 18 30 16 Q40 14 40 26 Q40 34 34 40"/><path d="M28 38 Q24 32 24 26 Q24 20 30 20 Q36 20 36 26 Q36 32 32 38"/><path d="M30 36 Q28 32 28 26 Q28 24 30 24 Q32 24 32 26 Q32 32 30 36"/></svg>`,
+    // 12: Un día - waves with fish
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 30 Q12 24 20 30 Q28 36 35 30 Q42 24 50 30 Q55 34 58 30"/><path d="M5 38 Q12 32 20 38 Q28 44 35 38 Q42 32 50 38" stroke-width="0.8" opacity="0.5"/><ellipse cx="30" cy="22" rx="7" ry="4"/><path d="M37 22 L42 18 L42 26 Z"/><circle cx="27" cy="21" r="1" fill="currentColor"/></svg>`,
+    // 13: Hola - pocket with papers
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M14 28 L14 52 L46 52 L46 28"/><path d="M14 28 Q30 36 46 28"/><rect x="20" y="14" width="8" height="16" rx="1" stroke-width="0.8" transform="rotate(-8 24 22)"/><rect x="28" y="10" width="8" height="18" rx="1" stroke-width="0.8"/><rect x="34" y="12" width="8" height="16" rx="1" stroke-width="0.8" transform="rotate(6 38 20)"/></svg>`
+  ],
+  "ciudad-invisible": [
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><line x1="10" y1="50" x2="50" y2="50"/><rect x="15" y="30" width="8" height="20"/><rect x="26" y="20" width="8" height="30"/><rect x="37" y="35" width="8" height="15"/></svg>`,
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><rect x="15" y="10" width="30" height="44"/><rect x="20" y="16" width="6" height="6"/><rect x="34" y="16" width="6" height="6"/><rect x="20" y="28" width="6" height="6"/><rect x="34" y="28" width="6" height="6"/><rect x="26" y="42" width="8" height="12"/></svg>`,
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="30" cy="16" r="8" fill="currentColor" opacity="0.15"/><circle cx="30" cy="30" r="8"/><circle cx="30" cy="44" r="8"/><line x1="30" y1="4" x2="30" y2="56"/></svg>`,
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><path d="M15 50 Q15 20 30 15 Q45 20 45 50"/><circle cx="22" cy="36" r="1" fill="currentColor" opacity="0.3"/><circle cx="38" cy="32" r="1" fill="currentColor" opacity="0.3"/><circle cx="30" cy="42" r="1" fill="currentColor" opacity="0.3"/></svg>`,
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><rect x="10" y="20" width="40" height="28" rx="8"/><line x1="10" y1="34" x2="50" y2="34"/><rect x="22" y="25" width="16" height="6" rx="1"/></svg>`,
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 12 L20 48"/><path d="M24 8 L24 44"/><path d="M28 14 L28 50"/><path d="M32 10 L32 46"/><path d="M36 12 L36 48"/><path d="M40 8 L40 44"/><line x1="8" y1="52" x2="52" y2="52" stroke-width="0.8"/></svg>`
+  ],
+  "reloj-de-arena": [
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><circle cx="30" cy="44" r="3" fill="currentColor" opacity="0.3"/><line x1="30" y1="10" x2="30" y2="40" stroke-dasharray="2 4"/></svg>`,
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="30" cy="30" r="16"/><line x1="30" y1="30" x2="30" y2="18"/><line x1="30" y1="30" x2="40" y2="30"/><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>`,
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><circle cx="30" cy="30" r="3"/><circle cx="30" cy="30" r="10"/><circle cx="30" cy="30" r="18"/><circle cx="30" cy="30" r="25" stroke-dasharray="3 4"/></svg>`,
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M10 44 Q20 20 30 16 Q40 20 50 44"/><line x1="30" y1="16" x2="30" y2="8"/><circle cx="30" cy="6" r="3" fill="currentColor" opacity="0.2"/></svg>`,
+    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><line x1="18" y1="14" x2="42" y2="14" stroke-width="1.5"/><line x1="18" y1="46" x2="42" y2="46" stroke-width="1.5"/><path d="M22 14 Q22 26 30 30 Q22 34 22 46"/><path d="M38 14 Q38 26 30 30 Q38 34 38 46"/></svg>`
+  ]
+};
+
 const books = [
   {
     id: "animales",

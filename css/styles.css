@@ -14,14 +14,12 @@
   --card-bg: #fff;
   --card-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
   --card-hover-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
-  --sidebar-bg: #faf8f4;
   --sidebar-active: #2c2c2c;
   --capture-bg: #fdfcf8;
   --capture-border: #e8e4df;
   --selection-bg: rgba(74, 69, 64, 0.15);
   --toggle-border: #ccc8c0;
   --scrollbar-thumb: #d4d0ca;
-  --overlay-bg: rgba(253, 252, 248, 0.95);
 }
 
 [data-theme="dark"] {
@@ -35,14 +33,12 @@
   --card-bg: #242424;
   --card-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   --card-hover-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-  --sidebar-bg: #1e1e1e;
   --sidebar-active: #e8e4df;
   --capture-bg: #1a1a1a;
   --capture-border: #333;
   --selection-bg: rgba(200, 195, 187, 0.2);
   --toggle-border: #555;
   --scrollbar-thumb: #444;
-  --overlay-bg: rgba(26, 26, 26, 0.95);
 }
 
 /* --- Reset & Base --- */
@@ -70,7 +66,6 @@ body {
   background: var(--selection-bg);
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -93,9 +88,9 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-20px); }
-  to { opacity: 1; transform: translateX(0); }
+@keyframes fadeInSlow {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* --- Header --- */
@@ -149,14 +144,6 @@ body {
   padding: 4rem 2rem 5rem;
 }
 
-.catalog-hero-author {
-  font-size: 0.75rem;
-  letter-spacing: 0.4em;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-}
-
 .catalog-hero-brand {
   font-size: 0.7rem;
   letter-spacing: 0.35em;
@@ -198,9 +185,6 @@ body {
 .book-card:nth-child(1) { animation-delay: 0.1s; }
 .book-card:nth-child(2) { animation-delay: 0.2s; }
 .book-card:nth-child(3) { animation-delay: 0.3s; }
-.book-card:nth-child(4) { animation-delay: 0.4s; }
-.book-card:nth-child(5) { animation-delay: 0.5s; }
-.book-card:nth-child(6) { animation-delay: 0.6s; }
 
 .book-card:hover {
   transform: translateY(-6px);
@@ -253,192 +237,63 @@ body {
   text-align: center;
 }
 
-/* --- Book Reader --- */
+/* ========================================
+   BOOK READER
+   ======================================== */
 .book-reader {
-  display: flex;
-  min-height: 100vh;
   animation: fadeIn 0.5s ease;
+  position: relative;
 }
 
-/* Sidebar */
-.book-sidebar {
-  width: 260px;
-  min-width: 260px;
-  background: var(--sidebar-bg);
-  border-right: 1px solid var(--border-color);
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  overflow-y: auto;
-  z-index: 20;
-  transition: background-color 0.4s, border-color 0.4s, transform 0.3s ease;
+/* --- Full-screen Hero --- */
+.book-hero {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-.sidebar-header {
-  padding: 1.8rem 1.5rem 1.2rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.sidebar-back {
-  font-family: 'Lustria', Georgia, serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.4rem 0;
-  transition: color 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.sidebar-back:hover {
-  color: var(--text-color);
-}
-
-.sidebar-back::before {
-  content: '\2190';
-  font-size: 0.9rem;
-}
-
-.sidebar-book-title {
-  font-size: 1rem;
-  margin-top: 1rem;
-  color: var(--text-color);
-  font-weight: 400;
-}
-
-.sidebar-book-author {
-  font-size: 0.6rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-top: 0.3rem;
-}
-
-.sidebar-index {
-  list-style: none;
-  padding: 1rem 0;
-  flex: 1;
-  overflow-y: auto;
-}
-
-.sidebar-index li {
-  animation: slideInLeft 0.4s ease both;
-}
-
-.sidebar-index li:nth-child(1) { animation-delay: 0.05s; }
-.sidebar-index li:nth-child(2) { animation-delay: 0.1s; }
-.sidebar-index li:nth-child(3) { animation-delay: 0.15s; }
-.sidebar-index li:nth-child(4) { animation-delay: 0.2s; }
-.sidebar-index li:nth-child(5) { animation-delay: 0.25s; }
-.sidebar-index li:nth-child(6) { animation-delay: 0.3s; }
-.sidebar-index li:nth-child(7) { animation-delay: 0.35s; }
-.sidebar-index li:nth-child(8) { animation-delay: 0.4s; }
-.sidebar-index li:nth-child(9) { animation-delay: 0.45s; }
-.sidebar-index li:nth-child(10) { animation-delay: 0.5s; }
-.sidebar-index li:nth-child(11) { animation-delay: 0.55s; }
-.sidebar-index li:nth-child(12) { animation-delay: 0.6s; }
-.sidebar-index li:nth-child(13) { animation-delay: 0.65s; }
-.sidebar-index li:nth-child(14) { animation-delay: 0.7s; }
-
-.sidebar-index a {
-  display: block;
-  padding: 0.55rem 1.5rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: all 0.3s ease;
-  border-left: 3px solid transparent;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.sidebar-index a:hover {
-  color: var(--text-color);
-  background: rgba(0, 0, 0, 0.02);
-}
-
-[data-theme="dark"] .sidebar-index a:hover {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.sidebar-index a.active {
-  color: var(--sidebar-active);
-  border-left-color: var(--sidebar-active);
-  font-weight: 400;
-}
-
-/* Sidebar mobile toggle */
-.sidebar-toggle {
-  display: none;
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  z-index: 30;
-  background: var(--bg-color);
-  border: 1px solid var(--border-color);
-  color: var(--text-color);
-  width: 40px;
-  height: 40px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: none;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s;
-}
-
-/* Book Content Area */
-.book-content {
-  flex: 1;
-  margin-left: 260px;
-  min-height: 100vh;
-}
-
-.book-hero {
   text-align: center;
-  padding: 6rem 2rem 4rem;
-  border-bottom: 1px solid var(--border-color);
+  padding: 4rem 2rem;
+  position: relative;
 }
 
 .book-hero-svg {
-  width: 180px;
+  width: 320px;
   height: auto;
   color: var(--text-color);
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   transition: color 0.4s;
+  animation: fadeInSlow 1.2s ease;
+}
+
+.book-hero-svg .book-cover-svg {
+  width: 100%;
+  height: auto;
 }
 
 .book-hero-author {
-  font-size: 0.72rem;
-  letter-spacing: 0.35em;
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease 0.3s both;
 }
 
 .book-hero-title {
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.1;
   color: var(--text-color);
+  animation: fadeIn 1s ease 0.5s both;
 }
 
 .book-hero-dedication {
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-style: italic;
   color: var(--text-muted);
-  margin-top: 1.5rem;
+  margin-top: 2.5rem;
+  animation: fadeIn 1s ease 0.7s both;
 }
 
 .book-hero-brand {
@@ -446,25 +301,127 @@ body {
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--text-light);
-  margin-top: 2rem;
+  margin-top: 3rem;
+  animation: fadeIn 1s ease 0.9s both;
 }
 
-/* Poem Sections */
-.poem-section {
-  padding: 5rem 2rem;
+.book-hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  color: var(--text-light);
+  font-size: 1.5rem;
+  animation: fadeIn 1.5s ease infinite alternate;
+}
+
+/* --- Sidebar (left, poem index only) --- */
+.book-sidebar {
+  width: 220px;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  z-index: 20;
+  padding: 1rem 0;
+  max-height: 80vh;
+  overflow-y: auto;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.sidebar-index {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-index a {
+  display: block;
+  padding: 0.45rem 1.8rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-left: 2px solid transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-index a:hover {
+  color: var(--text-muted);
+}
+
+.sidebar-index a.active {
+  color: var(--sidebar-active);
+  border-left-color: var(--sidebar-active);
+}
+
+/* --- Right side book info (fixed) --- */
+.book-right-info {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.book-right-title {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.book-right-author {
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  opacity: 0.6;
+}
+
+/* --- Book Content --- */
+.book-content {
   max-width: 650px;
   margin: 0 auto;
-  border-bottom: 1px solid var(--border-color);
+  padding: 0 2rem;
+}
+
+/* --- Poem Sections --- */
+.poem-section {
+  padding: 6rem 0;
   position: relative;
-  min-height: 60vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.poem-section:last-child {
+.poem-section:last-of-type {
   border-bottom: none;
-  margin-bottom: 4rem;
+}
+
+.poem-illustration {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.poem-illustration svg {
+  width: 65px;
+  height: 65px;
+  color: var(--text-color);
+}
+
+.poem-section:hover .poem-illustration {
+  opacity: 0.85;
 }
 
 .poem-title {
@@ -532,6 +489,87 @@ body {
   border-color: var(--text-color);
 }
 
+/* --- Book End Section (other books) --- */
+.book-end-section {
+  padding: 6rem 0 4rem;
+  text-align: center;
+}
+
+.book-end-title {
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+}
+
+.book-end-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.book-end-card {
+  text-decoration: none;
+  color: inherit;
+  padding: 2rem 1.5rem;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.book-end-card:hover {
+  border-color: var(--text-muted);
+  transform: translateY(-3px);
+}
+
+.book-end-card-svg {
+  width: 80px;
+  height: auto;
+  margin: 0 auto 1rem;
+  display: block;
+  color: var(--text-color);
+}
+
+.book-end-card-svg .book-cover-svg {
+  width: 100%;
+  height: auto;
+}
+
+.book-end-card-author {
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.book-end-card-title {
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+/* --- Sidebar Toggle (mobile) --- */
+.sidebar-toggle {
+  position: fixed;
+  top: 1.2rem;
+  left: 1.2rem;
+  z-index: 30;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  transition: all 0.3s;
+}
+
 /* --- Fragment Capture Button --- */
 .fragment-capture-btn {
   position: fixed;
@@ -553,7 +591,7 @@ body {
   opacity: 0.85;
 }
 
-/* --- Capture Stage (off-screen rendering) --- */
+/* --- Capture Stage --- */
 .capture-card {
   width: 600px;
   padding: 4rem 3.5rem;
@@ -620,7 +658,7 @@ body {
   opacity: 0.4;
 }
 
-/* --- Toast Notification --- */
+/* --- Toast --- */
 .toast {
   position: fixed;
   bottom: 2rem;
@@ -643,12 +681,31 @@ body {
   transform: translateX(-50%) translateY(0);
 }
 
-/* --- Responsive --- */
+/* --- Theme toggle in reader (top right, fixed) --- */
+.reader-theme-toggle {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 25;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
 @media (max-width: 1024px) {
   .book-grid {
     grid-template-columns: repeat(2, 1fr);
     padding: 2rem 3rem 4rem;
     gap: 2rem;
+  }
+
+  .book-sidebar {
+    width: 180px;
+  }
+
+  .sidebar-index a {
+    padding: 0.4rem 1.2rem;
+    font-size: 0.58rem;
   }
 }
 
@@ -668,30 +725,48 @@ body {
     min-height: 240px;
   }
 
-  /* Sidebar responsive */
+  /* Hero mobile */
+  .book-hero-title {
+    font-size: 2.8rem;
+  }
+
+  .book-hero-svg {
+    width: 220px;
+  }
+
+  /* Sidebar mobile: hidden by default, overlay when open */
   .sidebar-toggle {
     display: flex;
   }
 
   .book-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 260px;
+    height: 100vh;
+    max-height: 100vh;
     transform: translateX(-100%);
+    background: var(--bg-color);
+    box-shadow: none;
+    padding: 4rem 0 2rem;
+    z-index: 25;
+    overflow-y: auto;
   }
 
   .book-sidebar.open {
     transform: translateX(0);
-    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 0 30px rgba(0, 0, 0, 0.1);
   }
 
-  .book-content {
-    margin-left: 0;
-  }
-
-  .book-hero-title {
-    font-size: 2.5rem;
+  /* Hide right side info on mobile */
+  .book-right-info {
+    display: none;
   }
 
   .poem-section {
-    padding: 3rem 1.5rem;
+    padding: 4rem 0;
     min-height: 50vh;
   }
 
@@ -702,14 +777,27 @@ body {
   .catalog-hero {
     padding: 3rem 1.5rem 3rem;
   }
+
+  .book-content {
+    padding: 0 1.5rem;
+  }
 }
 
 @media (max-width: 480px) {
   .book-hero-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+
+  .book-hero-svg {
+    width: 180px;
   }
 
   .poem-body {
     font-size: 1.05rem;
+  }
+
+  .poem-illustration svg {
+    width: 50px;
+    height: 50px;
   }
 }
