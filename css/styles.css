@@ -260,10 +260,10 @@ body {
 }
 
 .book-hero-svg {
-  width: min(70vw, 500px);
+  width: min(85vw, 600px);
   height: auto;
   color: var(--text-color);
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   transition: color 0.4s;
   animation: fadeInSlow 1.5s ease;
 }
@@ -271,32 +271,24 @@ body {
 .book-hero-svg .book-cover-svg {
   width: 100%;
   height: auto;
-}
-
-.book-hero-author {
-  font-size: 0.85rem;
-  letter-spacing: 0.5em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 1.2rem;
-  animation: fadeIn 1s ease 0.4s both;
+  stroke-width: 2;
 }
 
 .book-hero-title {
-  font-size: 6rem;
+  font-size: 7rem;
   font-weight: 400;
-  line-height: 1.05;
+  line-height: 1;
   color: var(--text-color);
-  animation: fadeIn 1s ease 0.6s both;
+  animation: fadeIn 1s ease 0.4s both;
+  margin-bottom: 1.5rem;
 }
 
-.book-hero-brand {
-  font-size: 0.6rem;
-  letter-spacing: 0.35em;
+.book-hero-author {
+  font-size: 0.9rem;
+  letter-spacing: 0.5em;
   text-transform: uppercase;
-  color: var(--text-light);
-  margin-top: 3rem;
-  animation: fadeIn 1s ease 0.8s both;
+  color: var(--text-muted);
+  animation: fadeIn 1s ease 0.6s both;
 }
 
 .book-hero-scroll {
@@ -505,6 +497,44 @@ body {
   letter-spacing: 0.05em;
 }
 
+/* Visual poem (like fingerprint ~) */
+.poem-section-visual {
+  align-items: center;
+}
+
+.poem-visual-symbol {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.poem-visual-symbol svg {
+  width: 200px;
+  height: auto;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+/* Interlude sections - breathing room between poem groups */
+.interlude-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  padding: 4rem 2rem;
+}
+
+.interlude-svg {
+  width: min(80vw, 500px);
+  height: auto;
+  color: var(--text-color);
+  opacity: 0.5;
+  transition: opacity 0.4s;
+}
+
+.interlude-section:hover .interlude-svg {
+  opacity: 0.7;
+}
+
 /* Poem actions */
 .poem-actions {
   display: flex;
@@ -579,6 +609,13 @@ body {
   letter-spacing: 0.15em;
   color: var(--text-muted);
   margin-bottom: 0.5rem;
+}
+
+.credits-publisher-mark {
+  margin-top: 1rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
 }
 
 /* --- Book End Section (other books) --- */
@@ -814,11 +851,15 @@ body {
 
   /* Hero mobile */
   .book-hero-title {
-    font-size: 3.2rem;
+    font-size: 3.5rem;
   }
 
   .book-hero-svg {
-    width: min(80vw, 300px);
+    width: min(90vw, 340px);
+  }
+
+  .poem-visual-symbol svg {
+    width: 160px;
   }
 
   /* Sidebar mobile: hidden by default, toggle to open */
@@ -884,11 +925,11 @@ body {
 
 @media (max-width: 480px) {
   .book-hero-title {
-    font-size: 2.6rem;
+    font-size: 3rem;
   }
 
   .book-hero-svg {
-    width: min(85vw, 260px);
+    width: min(92vw, 280px);
   }
 
   .poem-body {

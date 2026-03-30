@@ -88,6 +88,20 @@ const App = (() => {
     return '';
   }
 
+  // --- Get interlude after poem ---
+  function getInterlude(bookId, index) {
+    const interludes = interludeIllustrations[bookId];
+    if (interludes && interludes[index]) {
+      return `<div class="interlude-section">${interludes[index]}</div>`;
+    }
+    return '';
+  }
+
+  // --- Check if poem content is a visual symbol (like ~) ---
+  function isVisualPoem(content) {
+    return content.trim() === '~';
+  }
+
   // --- Render Catalog ---
   function renderCatalog() {
     Capture.setCurrentBook(null);
@@ -135,12 +149,26 @@ const App = (() => {
       `<li><a href="#poem-${i}" data-index="${i}" class="sidebar-poem-link">${poem.title}</a></li>`
     ).join('');
 
-    const poemsHTML = book.poems.map((poem, i) => `
-      <section class="poem-section" id="poem-${i}" data-poem-index="${i}">
+    const poemsHTML = book.poems.map((poem, i) => {
+      const isVisual = isVisualPoem(poem.content);
+      // Large fingerprint SVG for "Vivo en el surco..."
+      const visualContent = `<div class="poem-visual-symbol">
+        <svg viewBox="0 0 200 260" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M70 220 Q40 180 40 130 Q40 50 100 30 Q160 10 170 80 Q175 120 160 160" stroke-width="1.4"/>
+          <path d="M80 210 Q55 175 55 130 Q55 60 100 45 Q150 28 158 85 Q162 120 150 155" stroke-width="1.2"/>
+          <path d="M88 200 Q68 170 68 130 Q68 72 100 58 Q140 44 146 90 Q148 118 140 148"/>
+          <path d="M95 190 Q80 165 80 130 Q80 82 100 72 Q130 60 134 95 Q136 118 128 142"/>
+          <path d="M100 180 Q90 158 90 130 Q90 95 100 85 Q118 76 122 100 Q124 118 118 138" stroke-width="1"/>
+          <path d="M105 168 Q98 152 98 130 Q98 108 106 100 Q114 94 116 110 Q116 125 110 140" stroke-width="0.8"/>
+        </svg>
+      </div>`;
+
+      return `
+      <section class="poem-section ${isVisual ? 'poem-section-visual' : ''}" id="poem-${i}" data-poem-index="${i}">
         ${getPoemIllustration(book.id, i)}
         <div class="poem-title">${poem.title}</div>
         ${poem.subtitle ? `<div class="poem-subtitle">${poem.subtitle}</div>` : ''}
-        <div class="poem-body">${formatPoem(poem.content)}</div>
+        ${isVisual ? visualContent : `<div class="poem-body">${formatPoem(poem.content)}</div>`}
         <div class="poem-actions">
           <button class="poem-action-btn" onclick="App.savePoem(${i})" title="Guardar como imagen">Guardar</button>
           <button class="poem-action-btn poem-copy-btn" onclick="App.copyPoem(${i})" title="Copiar poema">
@@ -148,7 +176,8 @@ const App = (() => {
           </button>
         </div>
       </section>
-    `).join('');
+      ${getInterlude(book.id, i)}
+    `;}).join('');
 
     // Other books for the end section
     const otherBooks = books.filter(b => b.id !== book.id);
@@ -183,9 +212,8 @@ const App = (() => {
 
         <div class="book-hero">
           <div class="book-hero-svg">${getBookSVG(book)}</div>
-          <div class="book-hero-author">${book.author}</div>
           <h1 class="book-hero-title">${book.title}</h1>
-          <div class="book-hero-brand">Maestra Editorial</div>
+          <div class="book-hero-author">${book.author}</div>
           <div class="book-hero-scroll">\u2193</div>
         </div>
 
@@ -205,7 +233,8 @@ const App = (() => {
             <div class="credits-details">
               ${book.poemsDates ? `<div class="credits-line">${book.poemsDates}</div>` : ''}
               <div class="credits-line">${book.edition || 'Primera edici\u00f3n'}, ${book.year || '2026'}</div>
-              <div class="credits-line">${book.publisher || 'Maestra Editorial'}</div>
+              <div class="credits-line">\u00a9 ${book.publisher || 'Maestra Editorial'}</div>
+              <div class="credits-line credits-publisher-mark">Publicado por ${book.publisher || 'Maestra Editorial'}</div>
             </div>
           </div>
 

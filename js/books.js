@@ -126,37 +126,37 @@ const bookSVGs = {
   </svg>`
 };
 
-// Small SVG illustrations for each poem (by book id, indexed by poem position)
+// Small SVG illustrations for each poem - animal-focused when possible
 const poemIllustrations = {
   animales: [
-    // 0: Blanca Varela - bus/metropolitano
-    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="8" y="18" width="44" height="26" rx="4"/><circle cx="18" cy="46" r="4"/><circle cx="42" cy="46" r="4"/><rect x="12" y="22" width="10" height="10" rx="1"/><rect x="25" y="22" width="10" height="10" rx="1"/><rect x="38" y="22" width="10" height="10" rx="1"/><line x1="8" y1="44" x2="52" y2="44"/></svg>`,
-    // 1: Perro atropellado - dog lying
-    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><ellipse cx="30" cy="32" rx="18" ry="8"/><circle cx="48" cy="25" r="7"/><circle cx="51" cy="23" r="1.5" fill="currentColor"/><path d="M54 27 Q58 28 55 25"/><path d="M16 38 Q14 46 17 48"/><path d="M22 39 Q20 46 23 48"/><line x1="5" y1="48" x2="55" y2="48" stroke-dasharray="4 3" stroke-width="0.8"/></svg>`,
-    // 2: 6:00 p.m. - setting sun
-    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="5" y1="38" x2="55" y2="38"/><path d="M15 38 A15 15 0 0 1 45 38"/><line x1="30" y1="14" x2="30" y2="20"/><line x1="14" y1="22" x2="18" y2="26"/><line x1="46" y1="22" x2="42" y2="26"/><line x1="8" y1="32" x2="14" y2="32"/><line x1="46" y1="32" x2="52" y2="32"/><circle cx="30" cy="30" r="2" fill="currentColor" opacity="0.3"/></svg>`,
-    // 3: Ausencia - empty doorway
-    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="15" y="8" width="30" height="46"/><path d="M20 54 L20 18 Q30 10 40 18 L40 54"/><circle cx="37" cy="36" r="1.5" fill="currentColor"/></svg>`,
-    // 4: Tributo a tu tiempo - dead bird
-    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><ellipse cx="30" cy="38" rx="14" ry="8"/><circle cx="18" cy="32" r="6"/><circle cx="16" cy="31" r="1.2" fill="currentColor"/><path d="M12 33 L6 31"/><path d="M30 46 Q28 52 32 52"/><line x1="30" y1="30" x2="28" y2="24" stroke-width="0.8"/><line x1="32" y1="30" x2="34" y2="24" stroke-width="0.8"/><path d="M26 24 Q30 20 34 24" stroke-width="0.8"/></svg>`,
-    // 5: Si pues, ya no me gustan tus ojos - lightbulb
-    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 35 Q18 28 18 22 A12 12 0 0 1 42 22 Q42 28 38 35"/><line x1="22" y1="35" x2="38" y2="35"/><line x1="24" y1="39" x2="36" y2="39"/><line x1="26" y1="43" x2="34" y2="43"/><line x1="30" y1="22" x2="30" y2="10" stroke-width="0.8"/><line x1="40" y1="14" x2="46" y2="10" stroke-width="0.8"/><line x1="20" y1="14" x2="14" y2="10" stroke-width="0.8"/></svg>`,
-    // 6: Oda - cat face
-    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="30" cy="34" r="16"/><path d="M14 22 L20 8 L26 20"/><path d="M46 22 L40 8 L34 20"/><circle cx="24" cy="32" r="2" fill="currentColor"/><circle cx="36" cy="32" r="2" fill="currentColor"/><ellipse cx="30" cy="38" rx="3" ry="2"/><line x1="14" y1="34" x2="6" y2="32" stroke-width="0.8"/><line x1="14" y1="36" x2="6" y2="38" stroke-width="0.8"/><line x1="46" y1="34" x2="54" y2="32" stroke-width="0.8"/><line x1="46" y1="36" x2="54" y2="38" stroke-width="0.8"/></svg>`,
-    // 7: Sin título - spider web
-    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.8"><line x1="30" y1="5" x2="30" y2="55"/><line x1="5" y1="30" x2="55" y2="30"/><line x1="10" y1="10" x2="50" y2="50"/><line x1="50" y1="10" x2="10" y2="50"/><path d="M30 12 Q36 12 38 18 Q38 24 30 24 Q22 24 22 18 Q22 12 30 12"/><path d="M30 18 Q42 18 44 30 Q44 42 30 42 Q18 42 18 30 Q18 18 30 18"/><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>`,
-    // 8: G - cricket
-    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><ellipse cx="30" cy="34" rx="12" ry="7"/><circle cx="18" cy="30" r="5"/><circle cx="16" cy="29" r="1.2" fill="currentColor"/><path d="M16 26 Q12 18 8 14" stroke-width="0.8"/><path d="M18 26 Q16 18 14 14" stroke-width="0.8"/><path d="M36 40 L44 52"/><path d="M38 40 L48 48"/><path d="M24 40 L18 52"/><path d="M22 40 L14 48"/></svg>`,
-    // 9: Si no te viera más - paint drop
-    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M30 8 Q38 24 38 34 A8 8 0 0 1 22 34 Q22 24 30 8"/><circle cx="30" cy="34" r="2" fill="currentColor" opacity="0.3"/><rect x="10" y="48" width="40" height="6" rx="1" stroke-width="0.8"/></svg>`,
-    // 10: Mamá sé que lloras - closed eyes with tear
-    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M10 28 Q18 22 26 28"/><path d="M34 28 Q42 22 50 28"/><path d="M26 32 Q24 38 26 42" stroke-width="0.8"/><circle cx="26" cy="44" r="2" fill="currentColor" opacity="0.4"/></svg>`,
-    // 11: Vivo en el surco - fingerprint
-    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.8"><path d="M22 42 Q16 34 16 26 Q16 14 30 12 Q44 10 44 26"/><path d="M26 40 Q20 34 20 26 Q20 18 30 16 Q40 14 40 26 Q40 34 34 40"/><path d="M28 38 Q24 32 24 26 Q24 20 30 20 Q36 20 36 26 Q36 32 32 38"/><path d="M30 36 Q28 32 28 26 Q28 24 30 24 Q32 24 32 26 Q32 32 30 36"/></svg>`,
-    // 12: Un día - waves with fish
-    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 30 Q12 24 20 30 Q28 36 35 30 Q42 24 50 30 Q55 34 58 30"/><path d="M5 38 Q12 32 20 38 Q28 44 35 38 Q42 32 50 38" stroke-width="0.8" opacity="0.5"/><ellipse cx="30" cy="22" rx="7" ry="4"/><path d="M37 22 L42 18 L42 26 Z"/><circle cx="27" cy="21" r="1" fill="currentColor"/></svg>`,
-    // 13: Hola - pocket with papers
-    `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M14 28 L14 52 L46 52 L46 28"/><path d="M14 28 Q30 36 46 28"/><rect x="20" y="14" width="8" height="16" rx="1" stroke-width="0.8" transform="rotate(-8 24 22)"/><rect x="28" y="10" width="8" height="18" rx="1" stroke-width="0.8"/><rect x="34" y="12" width="8" height="16" rx="1" stroke-width="0.8" transform="rotate(6 38 20)"/></svg>`
+    // 0: Blanca Varela - crowd in bus, bodies like sardines
+    `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1"><rect x="8" y="22" width="64" height="34" rx="6"/><circle cx="20" cy="60" r="5"/><circle cx="60" cy="60" r="5"/><line x1="8" y1="56" x2="72" y2="56"/><circle cx="22" cy="34" r="4" stroke-width="0.8"/><circle cx="34" cy="32" r="4" stroke-width="0.8"/><circle cx="46" cy="35" r="4" stroke-width="0.8"/><circle cx="58" cy="33" r="4" stroke-width="0.8"/><line x1="22" y1="38" x2="22" y2="48" stroke-width="0.6"/><line x1="34" y1="36" x2="34" y2="48" stroke-width="0.6"/><line x1="46" y1="39" x2="46" y2="48" stroke-width="0.6"/><line x1="58" y1="37" x2="58" y2="48" stroke-width="0.6"/></svg>`,
+    // 1: Perro atropellado - dog on road with wheel marks
+    `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.2"><ellipse cx="40" cy="38" rx="22" ry="10"/><circle cx="62" cy="30" r="9"/><circle cx="66" cy="28" r="1.8" fill="currentColor"/><path d="M70 32 Q76 34 72 30"/><path d="M55 22 Q60 16 58 24" stroke-width="1"/><path d="M22 46 Q18 56 22 60"/><path d="M30" y1="47" x2="28" y2="60" stroke-width="1"/><line x1="4" y1="62" x2="76" y2="62" stroke-width="0.6"/><line x1="4" y1="66" x2="76" y2="66" stroke-dasharray="6 4" stroke-width="0.6"/><circle cx="14" cy="20" r="8" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.3"/><circle cx="14" cy="20" r="3" stroke-width="0.6" opacity="0.3"/></svg>`,
+    // 2: 6:00 p.m. - lion claw as moon, spider eyes
+    `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1"><path d="M40 8 Q52 8 56 20 Q58 28 52 34 Q46 38 40 38 Q34 38 28 34 Q22 28 24 20 Q28 8 40 8" stroke-width="1.2"/><path d="M28 34 L22 44" stroke-width="1.5"/><path d="M34 38 L30 48" stroke-width="1.5"/><path d="M46 38 L50 48" stroke-width="1.5"/><path d="M52 34 L58 44" stroke-width="1.5"/><circle cx="34" cy="22" r="2" fill="currentColor"/><circle cx="46" cy="22" r="2" fill="currentColor"/><line x1="10" y1="58" x2="70" y2="58" stroke-width="0.6"/><path d="M10 58 A30 10 0 0 1 70 58" stroke-width="0.8" opacity="0.4"/></svg>`,
+    // 3: Ausencia - empty space, ghost of absent figure
+    `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="0.8"><path d="M32 20 Q40 12 48 20" stroke-dasharray="2 3"/><path d="M30 24 L30 52" stroke-dasharray="2 3"/><path d="M50 24 L50 52" stroke-dasharray="2 3"/><path d="M30 52 Q40 58 50 52" stroke-dasharray="2 3"/><circle cx="37" cy="28" r="1" fill="currentColor" opacity="0.2"/><circle cx="43" cy="28" r="1" fill="currentColor" opacity="0.2"/></svg>`,
+    // 4: Tributo - dead bird lying on its back
+    `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.2"><ellipse cx="40" cy="44" rx="18" ry="10"/><circle cx="22" cy="38" r="8"/><circle cx="19" cy="36" r="1.5" fill="currentColor"/><path d="M14 40 L6 38"/><path d="M40 34 L36 24" stroke-width="0.8"/><path d="M44 34 L48 24" stroke-width="0.8"/><path d="M34 24 Q40 18 48 24" stroke-width="0.8"/><path d="M54 52 Q50 62 56 64" stroke-width="0.8"/><path d="M58 44 Q66 44 68 48" stroke-width="0.8"/></svg>`,
+    // 5: Si pues - firefly-like animalitos coming out of a face
+    `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="40" cy="42" rx="16" ry="20"/><circle cx="34" cy="36" r="2.5"/><circle cx="46" cy="36" r="2.5"/><path d="M36 48 Q40 52 44 48"/><circle cx="18" cy="20" r="3" stroke-width="0.8"/><line x1="18" y1="20" x2="15" y2="17" stroke-width="0.5"/><line x1="18" y1="20" x2="21" y2="17" stroke-width="0.5"/><circle cx="62" cy="24" r="3" stroke-width="0.8"/><line x1="62" y1="24" x2="59" y2="21" stroke-width="0.5"/><line x1="62" y1="24" x2="65" y2="21" stroke-width="0.5"/><circle cx="28" cy="12" r="2" stroke-width="0.8" opacity="0.5"/><circle cx="54" cy="14" r="2" stroke-width="0.8" opacity="0.5"/><circle cx="66" cy="42" r="2" stroke-width="0.8" opacity="0.4"/></svg>`,
+    // 6: Oda - cat stretching with claws out
+    `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.2"><ellipse cx="36" cy="44" rx="20" ry="12"/><circle cx="58" cy="34" r="10"/><path d="M48 26 L52 14 L56 24"/><path d="M68 26 L64 14 L60 24"/><circle cx="54" cy="32" r="2" fill="currentColor"/><circle cx="62" cy="32" r="2" fill="currentColor"/><ellipse cx="58" cy="38" rx="2.5" ry="1.5"/><line x1="48" y1="36" x2="38" y2="34" stroke-width="0.6"/><line x1="48" y1="38" x2="38" y2="40" stroke-width="0.6"/><line x1="68" y1="36" x2="76" y2="34" stroke-width="0.6"/><line x1="68" y1="38" x2="76" y2="40" stroke-width="0.6"/><path d="M16 44 Q8 40 4 34"/><path d="M20 54 Q18 62 22 64" stroke-width="0.8"/></svg>`,
+    // 7: Sin título - spider hanging from web
+    `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="0.8"><line x1="40" y1="4" x2="40" y2="30"/><ellipse cx="40" cy="36" rx="8" ry="6" stroke-width="1"/><circle cx="40" cy="30" r="5" stroke-width="1"/><circle cx="38" cy="29" r="1" fill="currentColor"/><circle cx="42" cy="29" r="1" fill="currentColor"/><path d="M32 34 Q24 28 16 22"/><path d="M32 36 Q22 36 12 34"/><path d="M32 38 Q24 44 16 50"/><path d="M48 34 Q56 28 64 22"/><path d="M48 36 Q58 36 68 34"/><path d="M48 38 Q56 44 64 50"/><path d="M36 42 Q34 52 30 58" stroke-width="0.6"/><path d="M44 42 Q46 52 50 58" stroke-width="0.6"/></svg>`,
+    // 8: G - cricket on a leaf
+    `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1"><path d="M10 54 Q40 40 70 54" stroke-width="1.2"/><line x1="40" y1="48" x2="40" y2="54" stroke-width="0.6"/><ellipse cx="40" cy="40" rx="10" ry="6"/><circle cx="30" cy="36" r="4"/><circle cx="28" cy="35" r="1" fill="currentColor"/><path d="M28 32 Q22 22 16 18" stroke-width="0.8"/><path d="M30" y1="32" x2="26" y2="22" stroke-width="0.8"/><path d="M46 44 Q54 54 60 60" stroke-width="0.8"/><path d="M48 46 Q58 52 66 56" stroke-width="0.8"/><path d="M34 44 Q26 54 20 60" stroke-width="0.8"/></svg>`,
+    // 9: Si no te viera más - a paint drop escaping a canvas
+    `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1"><rect x="12" y="8" width="40" height="50" rx="1"/><rect x="16" y="12" width="32" height="42" rx="0" stroke-width="0.6" stroke-dasharray="2 3"/><path d="M48 46 Q54 52 56 64 A6 6 0 0 1 44 64 Q44 56 48 46" stroke-width="1.2"/><circle cx="50" cy="60" r="1.5" fill="currentColor" opacity="0.3"/><line x1="52" y1="46" x2="56" y2="42" stroke-width="0.6" opacity="0.4"/><line x1="52" y1="42" x2="58" y2="40" stroke-width="0.6" opacity="0.4"/></svg>`,
+    // 10: Mamá - closed eyes with single tear, sun above
+    `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="40" cy="16" r="6" stroke-width="0.8" opacity="0.3"/><path d="M16 40 Q24 32 34 40" stroke-width="1.5"/><path d="M46 40 Q54 32 64 40" stroke-width="1.5"/><path d="M34 44 Q32 54 34 60" stroke-width="0.8"/><path d="M34 60 Q34 64 38 62 Q36 58 34 60" fill="currentColor" opacity="0.3"/></svg>`,
+    // 11: Vivo en el surco - large fingerprint
+    null,
+    // 12: Un día - fish in the sea with waves
+    `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 32 Q14 24 24 32 Q34 40 44 32 Q54 24 64 32 Q72 38 78 32" stroke-width="1.2"/><path d="M4 42 Q14 34 24 42 Q34 50 44 42 Q54 34 64 42 Q72 48 78 42" stroke-width="0.8" opacity="0.5"/><path d="M4 52 Q14 44 24 52 Q34 60 44 52 Q54 44 64 52" stroke-width="0.5" opacity="0.3"/><ellipse cx="40" cy="22" rx="10" ry="5" stroke-width="1.2"/><path d="M50 22 L58 16 L58 28 Z" stroke-width="0.8"/><circle cx="36" cy="20" r="1.5" fill="currentColor"/><path d="M34 24 Q36 26 38 24" stroke-width="0.6"/></svg>`,
+    // 13: Hola - blue weeds/malahierba growing from a pocket
+    `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 46 L20 72 L60 72 L60 46"/><path d="M20 46 Q40 56 60 46" stroke-width="1.2"/><path d="M30 46 Q28 32 30 20" stroke-width="0.8"/><path d="M30 28 Q26 24 28 20" stroke-width="0.6"/><path d="M30 28 Q34 24 32 20" stroke-width="0.6"/><path d="M40 46 Q38 28 40 14" stroke-width="0.8"/><path d="M40 22 Q36 18 38 12" stroke-width="0.6"/><path d="M40 22 Q44 18 42 12" stroke-width="0.6"/><path d="M40 30 Q36 26 37 22" stroke-width="0.6"/><path d="M50 46 Q52 34 50 22" stroke-width="0.8"/><path d="M50 30 Q46 26 48 22" stroke-width="0.6"/><path d="M50 30 Q54 26 52 22" stroke-width="0.6"/></svg>`
   ],
   "ciudad-invisible": [
     `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><line x1="10" y1="50" x2="50" y2="50"/><rect x="15" y="30" width="8" height="20"/><rect x="26" y="20" width="8" height="30"/><rect x="37" y="35" width="8" height="15"/></svg>`,
@@ -173,6 +173,40 @@ const poemIllustrations = {
     `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M10 44 Q20 20 30 16 Q40 20 50 44"/><line x1="30" y1="16" x2="30" y2="8"/><circle cx="30" cy="6" r="3" fill="currentColor" opacity="0.2"/></svg>`,
     `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><line x1="18" y1="14" x2="42" y2="14" stroke-width="1.5"/><line x1="18" y1="46" x2="42" y2="46" stroke-width="1.5"/><path d="M22 14 Q22 26 30 30 Q22 34 22 46"/><path d="M38 14 Q38 26 30 30 Q38 34 38 46"/></svg>`
   ]
+};
+
+// Large interlude illustrations - shown between poem groups for breathing room
+const interludeIllustrations = {
+  animales: {
+    // After poem index 4 (after "Tributo a tu tiempo")
+    4: `<svg viewBox="0 0 300 200" fill="none" stroke="currentColor" stroke-width="0.8" class="interlude-svg">
+      <path d="M20 160 Q60 140 100 160 Q140 180 180 160 Q220 140 260 160 Q280 170 300 160" opacity="0.3"/>
+      <path d="M0 170 Q40 150 80 170 Q120 190 160 170 Q200 150 240 170 Q270 185 300 170" opacity="0.2"/>
+      <ellipse cx="150" cy="80" rx="40" ry="20" stroke-width="1"/>
+      <circle cx="120" cy="68" r="12" stroke-width="1"/>
+      <circle cx="116" cy="66" r="2.5" fill="currentColor" opacity="0.4"/>
+      <path d="M108 70 L96 66" stroke-width="0.8"/>
+      <path d="M160 92 Q180 100 188 110" stroke-width="0.8"/>
+      <path d="M130 100 Q126 116 130 122" stroke-width="0.6"/>
+      <path d="M170 100 Q174 116 170 122" stroke-width="0.6"/>
+      <circle cx="60" cy="40" r="2" fill="currentColor" opacity="0.15"/>
+      <circle cx="240" cy="50" r="3" fill="currentColor" opacity="0.15"/>
+      <circle cx="40" cy="100" r="2" fill="currentColor" opacity="0.1"/>
+      <circle cx="260" cy="90" r="2" fill="currentColor" opacity="0.1"/>
+    </svg>`,
+    // After poem index 9 (after "Si no te viera más")
+    9: `<svg viewBox="0 0 300 200" fill="none" stroke="currentColor" stroke-width="0.8" class="interlude-svg">
+      <circle cx="150" cy="100" r="50" stroke-width="1" stroke-dasharray="4 6"/>
+      <circle cx="150" cy="100" r="35" stroke-width="0.8" stroke-dasharray="3 5"/>
+      <circle cx="150" cy="100" r="20" stroke-width="0.6"/>
+      <circle cx="150" cy="100" r="8" stroke-width="0.5"/>
+      <circle cx="150" cy="100" r="2" fill="currentColor" opacity="0.3"/>
+      <path d="M100 100 Q80 60 60 50" stroke-width="0.5" opacity="0.3"/>
+      <path d="M200 100 Q220 60 240 50" stroke-width="0.5" opacity="0.3"/>
+      <path d="M150 50 Q150 30 140 20" stroke-width="0.5" opacity="0.3"/>
+      <path d="M150 150 Q150 170 160 180" stroke-width="0.5" opacity="0.3"/>
+    </svg>`
+  }
 };
 
 const books = [
