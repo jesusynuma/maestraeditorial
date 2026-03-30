@@ -1,0 +1,12 @@
+{
+  "name": "maestraeditorial",
+  "version": "1.0.0",
+  "description": "Catálogo de poesía - Maestra Editorial",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'No build needed'"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
