@@ -1,0 +1,700 @@
+/* ============================================
+   MAESTRA EDITORIAL - Poetry Catalog
+   ============================================ */
+
+/* --- CSS Custom Properties (Theme) --- */
+:root {
+  --bg-color: #fdfcf8;
+  --bg-secondary: #f5f3ee;
+  --text-color: #2c2c2c;
+  --text-muted: #8a8680;
+  --text-light: #b5b0a8;
+  --border-color: #e8e4df;
+  --accent-color: #4a4540;
+  --card-bg: #fff;
+  --card-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+  --card-hover-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+  --sidebar-bg: #faf8f4;
+  --sidebar-active: #2c2c2c;
+  --capture-bg: #fdfcf8;
+  --capture-border: #e8e4df;
+  --selection-bg: rgba(74, 69, 64, 0.15);
+  --toggle-border: #ccc8c0;
+  --scrollbar-thumb: #d4d0ca;
+  --overlay-bg: rgba(253, 252, 248, 0.95);
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --bg-secondary: #222222;
+  --text-color: #e8e4df;
+  --text-muted: #8a8680;
+  --text-light: #5a5550;
+  --border-color: #333;
+  --accent-color: #c8c3bb;
+  --card-bg: #242424;
+  --card-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  --card-hover-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+  --sidebar-bg: #1e1e1e;
+  --sidebar-active: #e8e4df;
+  --capture-bg: #1a1a1a;
+  --capture-border: #333;
+  --selection-bg: rgba(200, 195, 187, 0.2);
+  --toggle-border: #555;
+  --scrollbar-thumb: #444;
+  --overlay-bg: rgba(26, 26, 26, 0.95);
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Lustria', Georgia, 'Times New Roman', serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--selection-bg);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* --- Header --- */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 3rem;
+  position: relative;
+  z-index: 10;
+}
+
+.site-brand {
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.site-brand:hover {
+  color: var(--text-color);
+}
+
+.theme-toggle {
+  font-family: 'Lustria', Georgia, serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid var(--toggle-border);
+  color: var(--text-muted);
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--text-color);
+  border-color: var(--text-color);
+}
+
+/* --- Catalog Page --- */
+.catalog-page {
+  animation: fadeIn 0.6s ease;
+}
+
+.catalog-hero {
+  text-align: center;
+  padding: 4rem 2rem 5rem;
+}
+
+.catalog-hero-author {
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.catalog-hero-brand {
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  color: var(--text-light);
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+}
+
+.catalog-hero-arrow {
+  margin-top: 1rem;
+  color: var(--text-light);
+  font-size: 1.5rem;
+  animation: fadeIn 1.5s ease infinite alternate;
+}
+
+/* --- Book Grid --- */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  padding: 2rem 6rem 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.book-card {
+  background: var(--card-bg);
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: var(--card-shadow);
+  animation: fadeInUp 0.6s ease both;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.book-card:nth-child(1) { animation-delay: 0.1s; }
+.book-card:nth-child(2) { animation-delay: 0.2s; }
+.book-card:nth-child(3) { animation-delay: 0.3s; }
+.book-card:nth-child(4) { animation-delay: 0.4s; }
+.book-card:nth-child(5) { animation-delay: 0.5s; }
+.book-card:nth-child(6) { animation-delay: 0.6s; }
+
+.book-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.book-card-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 2rem;
+  background: var(--bg-secondary);
+  min-height: 280px;
+  transition: background-color 0.4s;
+}
+
+.book-cover-svg {
+  width: 140px;
+  height: auto;
+  color: var(--text-color);
+  transition: color 0.4s;
+}
+
+.book-card-info {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.book-card-author {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.book-card-title {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--text-color);
+  line-height: 1.3;
+}
+
+.book-card-footer {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  padding: 1rem 1.5rem;
+  text-align: center;
+}
+
+/* --- Book Reader --- */
+.book-reader {
+  display: flex;
+  min-height: 100vh;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Sidebar */
+.book-sidebar {
+  width: 260px;
+  min-width: 260px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow-y: auto;
+  z-index: 20;
+  transition: background-color 0.4s, border-color 0.4s, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 1.8rem 1.5rem 1.2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-back {
+  font-family: 'Lustria', Georgia, serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem 0;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.sidebar-back:hover {
+  color: var(--text-color);
+}
+
+.sidebar-back::before {
+  content: '\2190';
+  font-size: 0.9rem;
+}
+
+.sidebar-book-title {
+  font-size: 1rem;
+  margin-top: 1rem;
+  color: var(--text-color);
+  font-weight: 400;
+}
+
+.sidebar-book-author {
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+.sidebar-index {
+  list-style: none;
+  padding: 1rem 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar-index li {
+  animation: slideInLeft 0.4s ease both;
+}
+
+.sidebar-index li:nth-child(1) { animation-delay: 0.05s; }
+.sidebar-index li:nth-child(2) { animation-delay: 0.1s; }
+.sidebar-index li:nth-child(3) { animation-delay: 0.15s; }
+.sidebar-index li:nth-child(4) { animation-delay: 0.2s; }
+.sidebar-index li:nth-child(5) { animation-delay: 0.25s; }
+.sidebar-index li:nth-child(6) { animation-delay: 0.3s; }
+.sidebar-index li:nth-child(7) { animation-delay: 0.35s; }
+.sidebar-index li:nth-child(8) { animation-delay: 0.4s; }
+.sidebar-index li:nth-child(9) { animation-delay: 0.45s; }
+.sidebar-index li:nth-child(10) { animation-delay: 0.5s; }
+.sidebar-index li:nth-child(11) { animation-delay: 0.55s; }
+.sidebar-index li:nth-child(12) { animation-delay: 0.6s; }
+.sidebar-index li:nth-child(13) { animation-delay: 0.65s; }
+.sidebar-index li:nth-child(14) { animation-delay: 0.7s; }
+
+.sidebar-index a {
+  display: block;
+  padding: 0.55rem 1.5rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-index a:hover {
+  color: var(--text-color);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="dark"] .sidebar-index a:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sidebar-index a.active {
+  color: var(--sidebar-active);
+  border-left-color: var(--sidebar-active);
+  font-weight: 400;
+}
+
+/* Sidebar mobile toggle */
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 30;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+/* Book Content Area */
+.book-content {
+  flex: 1;
+  margin-left: 260px;
+  min-height: 100vh;
+}
+
+.book-hero {
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.book-hero-svg {
+  width: 180px;
+  height: auto;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  transition: color 0.4s;
+}
+
+.book-hero-author {
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+}
+
+.book-hero-title {
+  font-size: 3.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--text-color);
+}
+
+.book-hero-brand {
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-top: 2rem;
+}
+
+/* Poem Sections */
+.poem-section {
+  padding: 5rem 2rem;
+  max-width: 650px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.poem-section:last-child {
+  border-bottom: none;
+  margin-bottom: 4rem;
+}
+
+.poem-title {
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+
+.poem-body {
+  line-height: 2.2;
+  font-size: 1.15rem;
+  color: var(--text-color);
+}
+
+.poem-body .stanza {
+  margin-bottom: 2rem;
+}
+
+.poem-body .stanza:last-child {
+  margin-bottom: 0;
+}
+
+.poem-body .line {
+  display: block;
+}
+
+/* Poem actions */
+.poem-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.poem-section:hover .poem-actions {
+  opacity: 1;
+}
+
+.poem-action-btn {
+  font-family: 'Lustria', Georgia, serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.poem-action-btn:hover {
+  color: var(--text-color);
+  border-color: var(--text-color);
+}
+
+/* --- Fragment Capture Button --- */
+.fragment-capture-btn {
+  position: fixed;
+  font-family: 'Lustria', Georgia, serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--text-color);
+  color: var(--bg-color);
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.2s;
+  user-select: none;
+}
+
+.fragment-capture-btn:hover {
+  opacity: 0.85;
+}
+
+/* --- Capture Stage (off-screen rendering) --- */
+.capture-card {
+  width: 600px;
+  padding: 4rem 3.5rem;
+  font-family: 'Lustria', Georgia, serif;
+  text-align: left;
+}
+
+.capture-card.light-capture {
+  background: #fdfcf8;
+  color: #2c2c2c;
+  border: 1px solid #e8e4df;
+}
+
+.capture-card.dark-capture {
+  background: #1a1a1a;
+  color: #e8e4df;
+  border: 1px solid #333;
+}
+
+.capture-card-content {
+  font-size: 1.15rem;
+  line-height: 2.2;
+  margin-bottom: 2.5rem;
+}
+
+.capture-card-content .stanza {
+  margin-bottom: 1.5rem;
+}
+
+.capture-card-content .stanza:last-child {
+  margin-bottom: 0;
+}
+
+.capture-card-content .line {
+  display: block;
+}
+
+.capture-card-meta {
+  border-top: 1px solid;
+  border-color: inherit;
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.capture-card-book {
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.capture-card-author {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-top: 0.3rem;
+}
+
+.capture-card-brand {
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+/* --- Toast Notification --- */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  font-family: 'Lustria', Georgia, serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  background: var(--text-color);
+  color: var(--bg-color);
+  padding: 0.8rem 2rem;
+  z-index: 200;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .book-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem 3rem 4rem;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .book-grid {
+    grid-template-columns: 1fr;
+    padding: 1.5rem 1.5rem 3rem;
+    gap: 1.5rem;
+    max-width: 420px;
+  }
+
+  .book-card-cover {
+    min-height: 240px;
+  }
+
+  /* Sidebar responsive */
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  .book-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .book-sidebar.open {
+    transform: translateX(0);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .book-content {
+    margin-left: 0;
+  }
+
+  .book-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .poem-section {
+    padding: 3rem 1.5rem;
+    min-height: 50vh;
+  }
+
+  .poem-actions {
+    opacity: 1;
+  }
+
+  .catalog-hero {
+    padding: 3rem 1.5rem 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-hero-title {
+    font-size: 2rem;
+  }
+
+  .poem-body {
+    font-size: 1.05rem;
+  }
+}
