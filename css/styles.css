@@ -260,12 +260,12 @@ body {
 }
 
 .book-hero-svg {
-  width: 320px;
+  width: min(70vw, 500px);
   height: auto;
   color: var(--text-color);
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   transition: color 0.4s;
-  animation: fadeInSlow 1.2s ease;
+  animation: fadeInSlow 1.5s ease;
 }
 
 .book-hero-svg .book-cover-svg {
@@ -274,28 +274,20 @@ body {
 }
 
 .book-hero-author {
-  font-size: 0.8rem;
-  letter-spacing: 0.4em;
+  font-size: 0.85rem;
+  letter-spacing: 0.5em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 1rem;
-  animation: fadeIn 1s ease 0.3s both;
+  margin-bottom: 1.2rem;
+  animation: fadeIn 1s ease 0.4s both;
 }
 
 .book-hero-title {
-  font-size: 4.5rem;
+  font-size: 6rem;
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.05;
   color: var(--text-color);
-  animation: fadeIn 1s ease 0.5s both;
-}
-
-.book-hero-dedication {
-  font-size: 1rem;
-  font-style: italic;
-  color: var(--text-muted);
-  margin-top: 2.5rem;
-  animation: fadeIn 1s ease 0.7s both;
+  animation: fadeIn 1s ease 0.6s both;
 }
 
 .book-hero-brand {
@@ -304,15 +296,33 @@ body {
   text-transform: uppercase;
   color: var(--text-light);
   margin-top: 3rem;
-  animation: fadeIn 1s ease 0.9s both;
+  animation: fadeIn 1s ease 0.8s both;
 }
 
 .book-hero-scroll {
   position: absolute;
-  bottom: 2rem;
+  bottom: 2.5rem;
   color: var(--text-light);
   font-size: 1.5rem;
   animation: fadeIn 1.5s ease infinite alternate;
+}
+
+/* --- Dedication Section (separate from hero) --- */
+.book-dedication-section {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.book-dedication-text {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  line-height: 1.8;
 }
 
 /* --- Sidebar (left, hover-reveal on desktop) --- */
@@ -524,6 +534,51 @@ body {
 .poem-action-btn:hover {
   color: var(--text-color);
   border-color: var(--text-color);
+}
+
+/* --- Credits Section --- */
+.book-credits-section {
+  padding: 6rem 0;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.credits-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.credits-author {
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+
+.credits-bio {
+  font-size: 0.88rem;
+  line-height: 1.9;
+  color: var(--text-color);
+  margin-bottom: 2.5rem;
+  text-align: left;
+  opacity: 0.85;
+}
+
+.credits-details {
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.credits-line {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
 }
 
 /* --- Book End Section (other books) --- */
@@ -759,11 +814,11 @@ body {
 
   /* Hero mobile */
   .book-hero-title {
-    font-size: 2.8rem;
+    font-size: 3.2rem;
   }
 
   .book-hero-svg {
-    width: 220px;
+    width: min(80vw, 300px);
   }
 
   /* Sidebar mobile: hidden by default, toggle to open */
@@ -829,11 +884,11 @@ body {
 
 @media (max-width: 480px) {
   .book-hero-title {
-    font-size: 2.2rem;
+    font-size: 2.6rem;
   }
 
   .book-hero-svg {
-    width: 180px;
+    width: min(85vw, 260px);
   }
 
   .poem-body {

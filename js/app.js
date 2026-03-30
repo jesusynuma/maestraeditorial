@@ -185,13 +185,29 @@ const App = (() => {
           <div class="book-hero-svg">${getBookSVG(book)}</div>
           <div class="book-hero-author">${book.author}</div>
           <h1 class="book-hero-title">${book.title}</h1>
-          ${book.dedication ? `<div class="book-hero-dedication">${book.dedication}</div>` : ''}
           <div class="book-hero-brand">Maestra Editorial</div>
           <div class="book-hero-scroll">\u2193</div>
         </div>
 
+        ${book.dedication ? `
+        <div class="book-dedication-section">
+          <div class="book-dedication-text">${book.dedication}</div>
+        </div>
+        ` : ''}
+
         <main class="book-content">
           ${poemsHTML}
+
+          <div class="book-credits-section">
+            <div class="credits-title">${book.title}</div>
+            <div class="credits-author">${book.author}</div>
+            ${book.authorBio ? `<div class="credits-bio">${book.authorBio}</div>` : ''}
+            <div class="credits-details">
+              ${book.poemsDates ? `<div class="credits-line">${book.poemsDates}</div>` : ''}
+              <div class="credits-line">${book.edition || 'Primera edici\u00f3n'}, ${book.year || '2026'}</div>
+              <div class="credits-line">${book.publisher || 'Maestra Editorial'}</div>
+            </div>
+          </div>
 
           <div class="book-end-section">
             <div class="book-end-title">Lee otros libros</div>
