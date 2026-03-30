@@ -232,17 +232,48 @@ const App = (() => {
             ${book.authorBio ? `<div class="credits-bio">${book.authorBio}</div>` : ''}
             <div class="credits-details">
               ${book.poemsDates ? `<div class="credits-line">${book.poemsDates}</div>` : ''}
-              <div class="credits-line">${book.edition || 'Primera edici\u00f3n'}, ${book.year || '2026'}</div>
-              <div class="credits-line">\u00a9 ${book.publisher || 'Maestra Editorial'}</div>
-              <div class="credits-line credits-publisher-mark">Publicado por ${book.publisher || 'Maestra Editorial'}</div>
+              <div class="credits-line credits-edition">Primera edici\u00f3n por ${book.publisher || 'Maestra Editorial'}, ${book.year || '2026'}</div>
+              <div class="credits-line">\u00a9 ${book.year || '2026'} ${book.publisher || 'Maestra Editorial'}</div>
+            </div>
+          </div>
+
+          <div class="book-rating-section" id="book-rating">
+            <div class="rating-stars-display">
+              <div class="rating-avg" id="rating-avg">--</div>
+              <div class="rating-stars" id="rating-stars"></div>
+              <div class="rating-count" id="rating-count"></div>
+            </div>
+            <div class="rating-input" id="rating-input">
+              <div class="rating-prompt">¿Qu\u00e9 te pareci\u00f3?</div>
+              <div class="rating-stars-select" id="rating-stars-select">
+                <span class="star-btn" data-val="1">\u2606</span>
+                <span class="star-btn" data-val="2">\u2606</span>
+                <span class="star-btn" data-val="3">\u2606</span>
+                <span class="star-btn" data-val="4">\u2606</span>
+                <span class="star-btn" data-val="5">\u2606</span>
+              </div>
+            </div>
+            <div class="rating-views" id="rating-views"></div>
+          </div>
+
+          <div class="book-reviews-section" id="book-reviews">
+            <div class="reviews-list" id="reviews-list"></div>
+            <div class="review-form-toggle">
+              <button class="review-toggle-btn" id="review-toggle-btn">Dejar una rese\u00f1a</button>
+            </div>
+            <div class="review-form" id="review-form" style="display:none;">
+              <input type="text" id="review-name" class="review-input" placeholder="Tu nombre" maxlength="50"/>
+              <textarea id="review-text" class="review-textarea" placeholder="Escribe tu rese\u00f1a..." maxlength="500" rows="3"></textarea>
+              <button class="review-submit-btn" id="review-submit-btn">Enviar</button>
             </div>
           </div>
 
           <div class="book-end-section">
-            <div class="book-end-title">Lee otros libros</div>
+            <div class="book-end-title">Tambi\u00e9n lee</div>
             <div class="book-end-grid">
               ${otherBooksHTML}
             </div>
+            <a href="#/" class="catalog-link-btn">Ver cat\u00e1logo completo</a>
           </div>
         </main>
       </div>
@@ -279,6 +310,7 @@ const App = (() => {
     });
 
     setupPoemObserver();
+    setupRatingAndReviews(book.id);
 
     if (scrollToPoemIndex !== null && scrollToPoemIndex !== undefined) {
       setTimeout(() => {
@@ -345,6 +377,145 @@ const App = (() => {
       document.body.removeChild(ta);
       Capture.showToast('Poema copiado');
     });
+  }
+
+  // --- Device ID (unique per device/browser) ---
+  function getDeviceId() {
+    let id = localStorage.getItem('me-device-id');
+    if (!id) {
+      id = 'dev-' + Date.now() + '-' + Math.random().toString(36).substring(2, 10);
+      localStorage.setItem('me-device-id', id);
+    }
+    return id;
+  }
+
+  // --- Rating & Reviews ---
+  function setupRatingAndReviews(bookId) {
+    const deviceId = getDeviceId();
+
+    // Track view
+    fetch(`/api/book/${bookId}/view`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ deviceId }) }).catch(() => {});
+
+    // Load stats
+    loadStats(bookId, deviceId);
+    loadReviews(bookId);
+
+    // Star selection
+    const starsSelect = document.getElementById('rating-stars-select');
+    if (starsSelect) {
+      const stars = starsSelect.querySelectorAll('.star-btn');
+      stars.forEach(star => {
+        star.addEventListener('mouseenter', () => {
+          const val = parseInt(star.dataset.val);
+          stars.forEach(s => s.textContent = parseInt(s.dataset.val) <= val ? '\u2605' : '\u2606');
+        });
+        star.addEventListener('mouseleave', () => {
+          stars.forEach(s => s.textContent = '\u2606');
+        });
+        star.addEventListener('click', () => {
+          const val = parseInt(star.dataset.val);
+          submitRating(bookId, val, deviceId);
+        });
+      });
+    }
+
+    // Review form toggle
+    const toggleBtn = document.getElementById('review-toggle-btn');
+    const form = document.getElementById('review-form');
+    if (toggleBtn && form) {
+      toggleBtn.addEventListener('click', () => {
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        if (form.style.display === 'block') toggleBtn.style.display = 'none';
+      });
+    }
+
+    // Review submit
+    const submitBtn = document.getElementById('review-submit-btn');
+    if (submitBtn) {
+      submitBtn.addEventListener('click', () => {
+        const name = document.getElementById('review-name').value.trim();
+        const text = document.getElementById('review-text').value.trim();
+        if (!text) return;
+        submitReview(bookId, name || 'An\u00f3nimo', text, deviceId);
+      });
+    }
+  }
+
+  function loadStats(bookId, deviceId) {
+    fetch(`/api/book/${bookId}/stats?deviceId=${deviceId || getDeviceId()}`)
+      .then(r => r.json())
+      .then(data => {
+        const avgEl = document.getElementById('rating-avg');
+        const starsEl = document.getElementById('rating-stars');
+        const countEl = document.getElementById('rating-count');
+        const viewsEl = document.getElementById('rating-views');
+        if (avgEl) avgEl.textContent = data.avgRating > 0 ? data.avgRating.toFixed(1) : '--';
+        if (starsEl) {
+          const full = Math.round(data.avgRating || 0);
+          starsEl.innerHTML = [1,2,3,4,5].map(i => i <= full ? '\u2605' : '\u2606').join('');
+        }
+        if (countEl) countEl.textContent = data.ratingCount > 0 ? `${data.ratingCount} valoraci${data.ratingCount === 1 ? '\u00f3n' : 'ones'}` : '';
+        if (viewsEl) viewsEl.textContent = data.views > 0 ? `${data.views} lectura${data.views === 1 ? '' : 's'}` : '';
+
+        // Hide rating input if already voted
+        if (data.hasVoted) {
+          const input = document.getElementById('rating-input');
+          if (input) input.innerHTML = '<div class="rating-voted">Gracias por tu valoraci\u00f3n</div>';
+        }
+      })
+      .catch(() => {});
+  }
+
+  function submitRating(bookId, value, deviceId) {
+    fetch(`/api/book/${bookId}/rate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ rating: value, deviceId })
+    })
+      .then(r => r.json())
+      .then(data => {
+        if (data.ok) {
+          Capture.showToast('Gracias por tu valoraci\u00f3n');
+          loadStats(bookId);
+        } else {
+          Capture.showToast(data.message || 'Ya has votado');
+        }
+      })
+      .catch(() => Capture.showToast('Error al enviar'));
+  }
+
+  function loadReviews(bookId) {
+    fetch(`/api/book/${bookId}/reviews`)
+      .then(r => r.json())
+      .then(reviews => {
+        const list = document.getElementById('reviews-list');
+        if (!list || !reviews.length) return;
+        list.innerHTML = reviews.map(r => `
+          <div class="review-item">
+            <div class="review-item-name">${r.name}</div>
+            <div class="review-item-text">${r.text}</div>
+          </div>
+        `).join('');
+      })
+      .catch(() => {});
+  }
+
+  function submitReview(bookId, name, text, deviceId) {
+    fetch(`/api/book/${bookId}/review`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, text, deviceId })
+    })
+      .then(r => r.json())
+      .then(data => {
+        if (data.ok) {
+          Capture.showToast('Rese\u00f1a enviada, ser\u00e1 revisada');
+          document.getElementById('review-form').style.display = 'none';
+          document.getElementById('review-toggle-btn').style.display = 'block';
+          document.getElementById('review-toggle-btn').textContent = 'Rese\u00f1a enviada';
+        }
+      })
+      .catch(() => Capture.showToast('Error al enviar'));
   }
 
   // --- Router ---

@@ -617,11 +617,200 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.credits-publisher-mark {
-  margin-top: 1rem;
+.credits-edition {
+  font-weight: 400;
+}
+
+/* --- Rating Section --- */
+.book-rating-section {
+  padding: 3rem 0;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.rating-stars-display {
+  margin-bottom: 1.5rem;
+}
+
+.rating-avg {
+  font-size: 2.5rem;
+  color: var(--text-color);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.rating-stars {
+  font-size: 1.3rem;
+  color: var(--text-color);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.3rem;
+}
+
+.rating-count {
   font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.rating-input {
+  margin-bottom: 1.5rem;
+}
+
+.rating-prompt {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.rating-stars-select {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.star-btn {
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: transform 0.15s;
+  user-select: none;
+}
+
+.star-btn:hover {
+  transform: scale(1.2);
+}
+
+.rating-voted {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  font-style: italic;
+}
+
+.rating-views {
+  font-size: 0.6rem;
+  color: var(--text-light);
+  letter-spacing: 0.1em;
+}
+
+/* --- Reviews Section --- */
+.book-reviews-section {
+  padding: 2rem 0 3rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.reviews-list {
+  margin-bottom: 1.5rem;
+}
+
+.review-item {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.review-item-name {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.review-item-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-color);
+}
+
+.review-form-toggle {
+  text-align: center;
+}
+
+.review-toggle-btn {
+  font-family: 'Lustria', Georgia, serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: 1px solid var(--border-color);
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.review-toggle-btn:hover {
+  color: var(--text-color);
+  border-color: var(--text-color);
+}
+
+.review-form {
+  margin-top: 1rem;
+}
+
+.review-input,
+.review-textarea {
+  width: 100%;
+  font-family: 'Lustria', Georgia, serif;
+  font-size: 0.85rem;
+  background: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.6rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.review-input:focus,
+.review-textarea:focus {
+  border-color: var(--text-muted);
+}
+
+.review-textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.review-submit-btn {
+  font-family: 'Lustria', Georgia, serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--text-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 0.7rem 2rem;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.review-submit-btn:hover {
+  opacity: 0.8;
+}
+
+/* --- Catalog link button --- */
+.catalog-link-btn {
+  display: inline-block;
+  margin-top: 2.5rem;
+  font-family: 'Lustria', Georgia, serif;
+  font-size: 0.6rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  border: 1px solid var(--border-color);
+  padding: 0.7rem 2rem;
+  transition: all 0.3s;
+}
+
+.catalog-link-btn:hover {
+  color: var(--text-color);
+  border-color: var(--text-color);
 }
 
 /* --- Book End Section (other books) --- */

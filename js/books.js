@@ -219,7 +219,7 @@ const books = [
     edition: "Primera edici\u00f3n",
     publisher: "Maestra Editorial",
     poemsDates: "Poemas seleccionados entre 2012 y 2015",
-    authorBio: "Kelly Garcia (Ica, 1987) estudi\u00f3 Comunicaci\u00f3n Social en la Universidad Nacional Mayor de San Marcos. Perteneci\u00f3 a la generaci\u00f3n de poetas sanmarquinos de la d\u00e9cada del 2010. Particip\u00f3 en la antolog\u00eda Ese puerto existe (C.A.C.A Editores, 2012) y en diversas lecturas en espacios culturales. Vive en Lima, Per\u00fa.",
+    authorBio: "(Ica, 1987) estudi\u00f3 Comunicaci\u00f3n Social en la Universidad Nacional Mayor de San Marcos. Particip\u00f3 en la antolog\u00eda Ese puerto existe (C.A.C.A Editores, 2012) y en diversas lecturas en espacios culturales. Vive en Lima, Per\u00fa.",
     poems: [
       {
         title: "Ayer vi a Blanca Varela subiendo a la l\u00ednea B del metropolitano",
