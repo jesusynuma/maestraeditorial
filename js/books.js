@@ -1,34 +1,43 @@
 const bookSVGs = {
   animales: `<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" class="book-cover-svg">
     <rect width="200" height="260" fill="none"/>
-    <!-- Bird body -->
-    <ellipse cx="100" cy="120" rx="28" ry="24" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <!-- Dog body lying down -->
+    <ellipse cx="100" cy="140" rx="40" ry="18" fill="none" stroke="currentColor" stroke-width="1.3"/>
     <!-- Head -->
-    <circle cx="100" cy="88" r="14" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="148" cy="122" r="16" fill="none" stroke="currentColor" stroke-width="1.3"/>
+    <!-- Ear -->
+    <path d="M156 108 Q168 95 160 112" fill="none" stroke="currentColor" stroke-width="1.2"/>
     <!-- Eye -->
-    <circle cx="104" cy="85" r="2.5" fill="currentColor"/>
-    <!-- Beak -->
-    <path d="M114 88 L126 84 L114 92" fill="none" stroke="currentColor" stroke-width="1.5"/>
-    <!-- Tail feathers -->
-    <path d="M72 130 Q55 145 48 160" fill="none" stroke="currentColor" stroke-width="1.2"/>
-    <path d="M72 128 Q52 138 42 152" fill="none" stroke="currentColor" stroke-width="1.2"/>
-    <path d="M74 126 Q50 132 38 142" fill="none" stroke="currentColor" stroke-width="1.2"/>
-    <!-- Legs -->
-    <line x1="92" y1="144" x2="88" y2="170" stroke="currentColor" stroke-width="1.2"/>
-    <line x1="108" y1="144" x2="112" y2="170" stroke="currentColor" stroke-width="1.2"/>
-    <path d="M78 170 L88 170 L95 176" fill="none" stroke="currentColor" stroke-width="1.2"/>
-    <path d="M105 176 L112 170 L122 170" fill="none" stroke="currentColor" stroke-width="1.2"/>
-    <!-- Decorative dots -->
-    <circle cx="140" cy="70" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
-    <circle cx="155" cy="100" r="3" fill="none" stroke="currentColor" stroke-width="0.8"/>
-    <circle cx="60" cy="75" r="2.5" fill="none" stroke="currentColor" stroke-width="0.8"/>
-    <circle cx="148" cy="130" r="1.5" fill="none" stroke="currentColor" stroke-width="0.8"/>
-    <circle cx="50" cy="105" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
-    <circle cx="145" cy="155" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
-    <!-- Whisker lines from beak -->
-    <line x1="126" y1="84" x2="145" y2="78" stroke="currentColor" stroke-width="0.8"/>
-    <line x1="126" y1="86" x2="148" y2="86" stroke="currentColor" stroke-width="0.8"/>
-    <line x1="126" y1="88" x2="145" y2="94" stroke="currentColor" stroke-width="0.8"/>
+    <circle cx="153" cy="120" r="2" fill="currentColor"/>
+    <!-- Nose -->
+    <circle cx="163" cy="124" r="1.5" fill="currentColor"/>
+    <!-- Snout -->
+    <path d="M160 126 Q166 128 163 124" fill="none" stroke="currentColor" stroke-width="1"/>
+    <!-- Front legs -->
+    <line x1="130" y1="155" x2="128" y2="178" stroke="currentColor" stroke-width="1.2"/>
+    <line x1="120" y1="156" x2="118" y2="178" stroke="currentColor" stroke-width="1.2"/>
+    <!-- Back legs -->
+    <path d="M68 152 Q60 168 65 178" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <path d="M78 154 Q72 168 75 178" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <!-- Tail -->
+    <path d="M58 138 Q38 125 35 110" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <!-- Road line (dashed) -->
+    <line x1="15" y1="185" x2="185" y2="185" stroke="currentColor" stroke-width="0.6" stroke-dasharray="8 6"/>
+    <!-- Ground -->
+    <line x1="10" y1="178" x2="190" y2="178" stroke="currentColor" stroke-width="0.8"/>
+    <!-- Spider web corner (top right) -->
+    <path d="M175 30 L190 30" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
+    <path d="M175 30 L190 45" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
+    <path d="M175 30 L185 50" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
+    <path d="M182 30 Q183 36 190 38" fill="none" stroke="currentColor" stroke-width="0.4" opacity="0.4"/>
+    <!-- Small spider -->
+    <circle cx="186" cy="42" r="1.5" fill="currentColor" opacity="0.4"/>
+    <!-- Decorative dots (stars/dust) -->
+    <circle cx="30" cy="55" r="1" fill="currentColor" opacity="0.3"/>
+    <circle cx="50" cy="40" r="1.5" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.3"/>
+    <circle cx="85" cy="50" r="1" fill="currentColor" opacity="0.3"/>
+    <circle cx="120" cy="35" r="1.5" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.3"/>
+    <circle cx="155" cy="55" r="1" fill="currentColor" opacity="0.3"/>
   </svg>`,
 
   "ciudad-invisible": `<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" class="book-cover-svg">
@@ -122,62 +131,64 @@ const books = [
     id: "animales",
     title: "Animales",
     author: "Kelly Garcia",
+    dedication: "A mis abuelos",
     poems: [
       {
-        title: "Ayer vi a Blanca Varela...",
-        content: "Ayer vi a Blanca Varela\nen un sue\u00f1o\nme dijo que los poemas\nson animales\nque respiran solos\ny muerden\ncuando tienen hambre"
+        title: "Ayer vi a Blanca Varela subiendo a la l\u00ednea B del metropolitano",
+        content: "En verdad vi la sien izquierda de Blanca Varela\nsubiendo al \u00faltimo metropolitano de la l\u00ednea B\n\nEn verdad vi el cabello de Blanca Varela\nsujeto detr\u00e1s de la oreja izquierda de Blanca Varela\n\nLa vi hasta que se perdi\u00f3 en la sopa de brazos, piernas, cabellos y orejas.\nLo m\u00e1s seguro es que no fuera ella.\n\nOh Blanca, soy victima de tu sublime carcajada.\n\nAyer te vi en el metropolitano\ny ahora estoy en otro bus\nsin boletos de colores\nsin destino transparente\nsin tu sien izquierda.\njunio 2013"
       },
       {
-        title: "A un perro atropella...",
-        content: "A un perro atropellado\nen la carretera\nle crecen flores\nen las costillas\n\ny...\n\nadi\u00f3s ruedas\nadi\u00f3s perro\n\ntus patitas son ahora\nin\u00fatiles terminaciones nerviosas\nde tu cuerpo muerto\n\nEn tu costado derecho\ndebajo de las costillas\ntienes un corte\nmide unos 13 cent\u00edmetros\ny tus tripas lo aprovechan\nsalen por ah\u00ed a husmear el mundo"
+        title: "A un perro atropellado en la Av. Universitaria",
+        content: "Cuatro patitas negras\nvan sobre el asfalto negro\nluego...\ncuatro ruedas negras\nsobre el perrito negro\ny...\nadi\u00f3s ruedas\nadi\u00f3s perro\n\ntus patitas son ahora\nin\u00fatiles terminaciones nerviosas\nde tu cuerpo muerto\n\nEn tu costado derecho\ndebajo de las costillas\ntienes un corte\nmide unos 13 cent\u00edmetros\ny tus tripas lo aprovechan\nsalen por ah\u00ed a husmear el mundo\nson muy descaradas perrito\nsaludan a los pasajeros\ndel transporte p\u00fablico\ny a los que van a pie\n\neres todo un espect\u00e1culo\n\ntodos ellos voltean a mirarte\npero tu ya nunca mirar\u00e1s a nadie\n\ntus ojitos ya no est\u00e1n en su lugar\nahora tienes dos huecos\ny de ellos\ncuelgan dos hermosos hilos de sangre\nque se estiran\ncomo queriendo tocar el suelo\n\nY te miro y quiero llorar perrito\nme has recordado a la muerte\nella tambi\u00e9n es un perro negro\nsin ojos y sin tripas"
       },
       {
-        title: "6:00 P.M.",
-        content: "Son las seis de la tarde\ny el gato duerme\nsobre el peri\u00f3dico\n\nlas noticias de hoy\nson su almohada\n\nma\u00f1ana\nser\u00e1n su arena"
+        title: "6:00 p.m.",
+        subtitle: "a J y C",
+        content: "Ya son las 6 de la tarde\nel sol se ha derramado por completo sobre la tierra\nhaciendo crujir de dolor a sus criaturas\nque al final del d\u00eda terminan encogidas\nretorci\u00e9ndose de luz\nentre las llamas invisibles\n\nnosotros, ustedes\nest\u00e1n, estamos\nsiempre dispuestos a la noche\n(que a pesar de todo ha sido nuestra preferida\npor todas esas jornadas nocturnas\nllenas del azul solitario de los f\u00f3sforos)\natentos\nporque la luna es una enorme garra de le\u00f3n\npropensa al zarpazo\n... \u00a1no le tengamos miedo!\nno podemos temblar de terror\ntantas veces nos recostamos sobre nuestros propios vientres\nsolo para mirar la noche\ny hemos terminado ebrios\ncon los ojos llenos de la niebla de otros siglos.\n\nnosotros, ustedes\n\u00bfyo?\nsoy una simple piedra enterrada en el simple suelo\nustedes en cambio\nbrotan de entre el excremento\ncomo la hierba\no como los ojos de las ara\u00f1as\nabundantes y transparentes\njuegan con el dolor del mundo\ncomo con un ni\u00f1o de tres a\u00f1os\ny emergen de la batalla despu\u00e9s del suplicio\n\ninocentes               vagabundos                              iluminados"
       },
       {
         title: "Ausencia",
-        content: "El p\u00e1jaro que no vuelve\ndeja un hueco\nen la rama\n\nla rama no lo sabe\npero pesa menos\n\ny el \u00e1rbol\nsin saberlo\nse inclina\nhacia el lado\ndonde ya no est\u00e1"
+        content: "Voy inventando mis pasos\ninerte y vaciada de luz\ntiento a ciegas el mundo\ny le voy robando a la angustia\neste breve espacio\nen donde me escondo\nde ti\ny contigo\n\npero te llamo y no vienes\n\ngrito tu nombre\nhasta vomitar las entra\u00f1as"
       },
       {
         title: "Tributo a tu tiempo",
-        content: "Tu tiempo de gato\nes un reloj sin manecillas\n\ncada siesta\nes una hora\nque no existe\n\ncada salto\nun segundo\nque se niega\na ser contado"
+        content: "Eres insurrecci\u00f3n de la memoria\nllegas a mi mente\ncon tus pasos largos\ncon tus ojos verdes\ncon tus manos buenas\nme llegas como vaho\nde ranciedad y apolillamiento\n\nTe hab\u00edas perdido y has vuelto\nEres t\u00fa?\nno, ya no eres t\u00fa\n\nEres solo un p\u00e1jaro muerto\nimposible de tocar y de o\u00edr\ntr\u00e1gicamente invisible\nirremediablemente\ninolvidable."
       },
       {
-        title: "Si pues, ya no me gust...",
-        content: "Si pues\nya no me gustan\nlos perros con due\u00f1o\n\nprefiero\nlos que cruzan la calle\nsin mirar\n\nesos\nque no le deben nada\na nadie"
+        title: "Si pues, ya no me gustan tus ojos",
+        content: "te he visto de color sepia\nadornado con foquitos de medio watt\nsalen de tus orejas\nde tu boca\ny de los huecos de tu nariz\nson como animalitos\nsalen y se esconden\nsalen y se esconden\nsalen y se esconden\n\nAsi son tus luces\nasi son porque asi eres t\u00fa\nte enciendes y te apagas\nte enciendes y te apagas\nte enciendes y te apagas\nte enciendes y te apagas\nte enciendes y te apagas\nte enciendes y te apagas\nte enciendes y te apagas\nte enciendes y me apagas"
       },
       {
-        title: "Oda a tu hipot\u00e9tica a...",
-        content: "Oda a tu hipot\u00e9tica ausencia\nanimal de compa\u00f1\u00eda\n\nsi te fueras\n\u00bfqui\u00e9n lamer\u00eda\nla sal de mis l\u00e1grimas?\n\n\u00bfqui\u00e9n dormir\u00eda\nen el hueco\nque deja mi cuerpo\nen el sof\u00e1?"
+        title: "Oda a tu hipot\u00e9tica ausencia llena de gatos y garritas",
+        content: "Miau, miau, miau"
       },
       {
         title: "Sin t\u00edtulo",
-        content: "Un pez\nen una bolsa de pl\u00e1stico\nes un astronauta\n\nsu pecera\nes el universo\n\ny el agua\nque se acaba\nes el ox\u00edgeno\nde su traje espacial"
+        content: "puedes irte,\nno hay problema\nyo me quedo aqu\u00ed\nescuchando a las ara\u00f1as tejer sus telas\ny a las ra\u00edces de los \u00e1rboles enterrarse m\u00e1s y m\u00e1s"
       },
       {
         title: "G",
-        content: "G de gato\nG de garra\nG de gru\u00f1ido\n\nla G\nes la letra\nm\u00e1s animal\ndel abecedario"
+        content: "un d\u00eda de estos\nla vida se disfrazar\u00e1\nde se\u00f1ora bonachona\ny nos har\u00e1 creer\nque podemos ser felices\n\ny nos comeremos el cuento\n\ny la tristeza ser\u00e1 solo\nun grillo m\u00e1s"
       },
       {
         title: "Si no te viera m\u00e1s",
-        content: "Si no te viera m\u00e1s\nanimal\n\nme quedar\u00eda\ncon el sonido\nde tus patas\nsobre el piso\n\nese ritmo\nirregular\nque hac\u00edas\nal caminar\n\ncomo un jazz\ndesafinado\ny perfecto"
+        content: "Si no te viera m\u00e1s\nmi voz\n-solitaria sucesi\u00f3n de vocales cerradas-\nvagar\u00e1 inconclusa y anhelante\ncomo la gotita de pintura\nque se escap\u00f3 del cuadro\npara vivir pegada al pintor\npara conciliar o reconciliar\npara llegar a un acuerdo\npara pedir y para dar\nde m\u00ed y para m\u00ed\nsin pedirlo todo y entregando nada"
       },
       {
-        title: "Mam\u00e1 s\u00e9 que lloras a...",
-        content: "Mam\u00e1 s\u00e9 que lloras a veces\ncuando el perro te mira\ncon esos ojos\n\nno llores\n\n\u00e9l no sabe\nque va a morir\n\ny t\u00fa no sabes\nque ya est\u00e1s\nmuriendo"
+        title: "Mam\u00e1 s\u00e9 que lloras a escondidas",
+        content: "1\nCierra los ojos mam\u00e1\nolvida mis veinticinco insolentes a\u00f1os\nyo olvidar\u00e9 tus l\u00e1grimas de funeral\n\n2\nDescansemos mam\u00e1\nignoremos los a\u00f1os y las l\u00e1grimas\n(que al final son lo mismo)\n\n3\nYa sab\u00eda que me iba a despertar as\u00ed\ncon los ojos ahogados por el sol\nque ya detesto\nque ya detestamos"
       },
       {
-        title: "Vivo en el surco m\u00e1s ...",
-        content: "Vivo en el surco m\u00e1s hondo\ndel animal m\u00e1s viejo\n\naqu\u00ed abajo\ntodo huele\na tierra mojada\n\ny los gusanos\nson mis vecinos\nm\u00e1s antiguos"
+        title: "Vivo en el surco m\u00e1s peque\u00f1o de tu huella digital",
+        content: "~"
       },
       {
         title: "Un d\u00eda",
-        content: "Un d\u00eda\nel animal se detuvo\ny mir\u00f3 al cielo\n\nno buscaba a dios\nni a las estrellas\n\nsolo quer\u00eda\nsaber\nsi iba a llover"
+        content: "Soy las escamas de un pescado victimado en el puerto\nSoy la espuma que las olas dejan en la orilla cuando fallecen\nSoy hongo en la red del pescador\nEl moho en la base de su bote\nY las claraboyas amarillas\n\nLa piedra redondeada por la fuerza del mar\nEl mar experto en domar piedras\nEl anzuelo oxidado\nLas maderas carcomidas sin destino y sin capit\u00e1n\n\nLos pies que vuelan\nEl mar que grita\nLa luna que esp\u00eda\nLa pupila que se esconde\nLas memorias tachadas de una agenda sin due\u00f1o y sin fechas\nLas zapatillas pintadas\nLa bendita en el codo de alguien\n\nEl an\u00f3nimo descubierto\nY las caras conocidas\nLa huella clandestina\nLos mensajes pasados\nLas rayas verticales\nLa profunda negaci\u00f3n\nEl hola y el qu\u00e9 tal de un desconocido hacia un desconocido\nLos versos borrados\ny el adi\u00f3s"
       },
       {
         title: "Hola",
-        content: "Hola\nanimal\n\nhola\ncriatura\nde ojos redondos\n\nhola\nser\nque no necesita\nnombre\n\nhola\nvida\nque no pide\npermiso"
+        content: "Tengo un montoncito de palabras\naqu\u00ed, en el bolsillo derecho\n\u00bfquieres verlo?\nes peque\u00f1o y alegre\ncomo un reci\u00e9n nacido\npor eso lo amo\n\nHay otro debajo de mi cama\neste es grave y opaco\ncomo luz de muerto\nno te lo recomiendo\n\npero entre tu nombre\ny la pelusita amarilla\nque se cae del sol\nhe puesto uno\ntiene problemas\nno sabe qui\u00e9n es\ntal vez no quiera verte\nmejor no te lo muestro\nni a este ni a los otros\nadem\u00e1s\nson solo malahierba\nde color azul\nque crece y se multiplica\nsolo para joderme la vida\n\nya me di cuenta\nquieren hacerse grandes\nm\u00e1s fuertes que yo\nterminar\u00e1n mat\u00e1ndome\no algo peor\n\nser\u00e1 mejor\nQUE NO LOS VEAS\nQUE NADIE LOS VEA\nQUE NADIE ME VEA\n\nquiero ser poeta\ny en mi casa nadie sabe\nshhhh"
       }
     ]
   },

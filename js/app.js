@@ -110,6 +110,7 @@ const App = (() => {
     const poemsHTML = book.poems.map((poem, i) => `
       <section class="poem-section" id="poem-${i}" data-poem-index="${i}">
         <div class="poem-title">${poem.title}</div>
+        ${poem.subtitle ? `<div class="poem-subtitle">${poem.subtitle}</div>` : ''}
         <div class="poem-body">${formatPoem(poem.content)}</div>
         <div class="poem-actions">
           <button class="poem-action-btn" onclick="App.savePoem(${i})" title="Guardar como imagen">Guardar</button>
@@ -142,6 +143,7 @@ const App = (() => {
             <div class="book-hero-svg">${getBookSVG(book)}</div>
             <div class="book-hero-author">${book.author}</div>
             <h1 class="book-hero-title">${book.title}</h1>
+            ${book.dedication ? `<div class="book-hero-dedication">${book.dedication}</div>` : ''}
             <div class="book-hero-brand">Maestra Editorial</div>
           </div>
           ${poemsHTML}

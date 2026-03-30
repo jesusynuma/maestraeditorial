@@ -434,6 +434,13 @@ body {
   color: var(--text-color);
 }
 
+.book-hero-dedication {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+}
+
 .book-hero-brand {
   font-size: 0.6rem;
   letter-spacing: 0.35em;
@@ -465,6 +472,14 @@ body {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+
+.poem-subtitle {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: -2rem;
   margin-bottom: 2.5rem;
 }
 
